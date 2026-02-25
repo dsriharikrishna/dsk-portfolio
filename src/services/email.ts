@@ -50,7 +50,7 @@ export async function sendContactEmail({ name, email, message }: SendEmailParams
       from: process.env.CONTACT_EMAIL_FROM || 'onboarding@resend.dev',
       to: process.env.CONTACT_EMAIL_TO || 'dsriharik8432@gmail.com',
 
-      reply_to: email,
+      replyTo: email,
       subject: `Portfolio Contact: Message from ${name}`,
       html: `
         <!DOCTYPE html>
