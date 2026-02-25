@@ -7,7 +7,7 @@ export const resumeData = {
         location: 'Hyderabad, India',
         linkedin: 'https://www.linkedin.com/in/dasari-sriharikrishna/',
         github: 'https://github.com/dsriharikrishna',
-        portfolio: '#',
+        portfolio: 'https://dskh-portfolio.netlify.app',
     },
 
     summary:

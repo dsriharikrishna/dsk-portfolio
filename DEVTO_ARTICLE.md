@@ -16,7 +16,7 @@ My portfolio is more than just a showcase - it's a demonstration of my technical
 
 ## Portfolio
 
-🔗 **Live Site**: https://dsriharikrishna.netlify.app
+🔗 **Live Site**: https://dskh-portfolio.netlify.app
 🔗 **GitHub**: https://github.com/dsriharikrishna/dsk-portfolio
 
 <!-- Note: Portfolio is deployed on Netlify, not Cloud Run -->
@@ -196,7 +196,7 @@ Building this portfolio was an incredible journey. It showcases not just my proj
 
 I'm excited to continue improving it and sharing my journey on Dev.to!
 
-**Check it out**: https://dsriharikrishna.netlify.app
+**Check it out**: https://dskh-portfolio.netlify.app
 
 ---
 
