@@ -1,13 +1,13 @@
 # Portfolio - Dasari Sriharikrishna
 
-A modern, production-ready portfolio website built with Next.js 15, TypeScript, and GSAP animations. Features a fully functional contact form with email integration.
+A modern, production-ready portfolio website built with Next.js 16, TypeScript, Tailwind CSS, and Framer Motion. Designed with a modular Feature-Based Architecture and interactive cinematic UI elements.
 
 ## 🚀 Tech Stack
 
-- **Framework:** Next.js 15 (App Router)
+- **Framework:** Next.js 16 (App Router / Turbopack)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
-- **Animations:** GSAP with ScrollTrigger
+- **Animations:** Framer Motion + Magic UI
 - **State Management:** React Hooks
 - **Form Handling:** React Hook Form + Zod
 - **Email Service:** Resend
@@ -16,14 +16,14 @@ A modern, production-ready portfolio website built with Next.js 15, TypeScript, 
 
 ## ✨ Features
 
-- 🎨 Modern, responsive design with glass morphism effects
-- ⚡ Optimized performance with Next.js App Router
+- 🎨 Premium, cinematic dark-mode design with glowing UI accents
+- ⚡ Optimized performance with Next.js App Router and Turbopack
 - 📧 Functional contact form with email notifications
-- 🎭 Smooth GSAP animations and scroll effects
+- 🎭 Interactive micro-animations, meteors, and custom cursors
 - 📱 Fully responsive across all devices
 - 🔒 Form validation with Zod
 - 🎯 SEO optimized with proper metadata
-- 🏗️ Scalable folder structure
+- 🏗️ Scalable **Feature-Based** folder structure
 - 🔄 Reusable component architecture
 - 📊 Type-safe with TypeScript
 
@@ -33,34 +33,37 @@ A modern, production-ready portfolio website built with Next.js 15, TypeScript, 
 dsk-portfolio/
 ├── src/
 │   ├── app/                 # Next.js App Router
-│   │   ├── api/contact/    # Contact form API endpoint
-│   │   ├── layout.tsx      # Root layout with metadata
-│   │   ├── page.tsx        # Home page
-│   │   └── globals.css     # Global styles
+│   │   ├── api/contact/     # Contact form API endpoint
+│   │   ├── layout.tsx       # Root layout with metadata
+│   │   ├── page.tsx         # Home page
+│   │   └── globals.css      # Global styles (utility-first)
 │   ├── components/
-│   │   ├── layout/         # Layout components (Navbar, Footer)
-│   │   ├── sections/       # Page sections (Hero, About, etc.)
-│   │   ├── shared/         # Reusable components
-│   │   └── ui/             # shadcn/ui components
-│   ├── data/               # Static data files
-│   │   ├── projects.ts
-│   │   ├── skills.ts
-│   │   ├── experience.ts
-│   │   ├── education.ts
-│   │   └── contact.ts
-│   ├── lib/                # Utilities
+│   │   ├── layout/          # Layout components (Navbar, Footer)
+│   │   ├── shared/          # Reusable generic components (GlassCard)
+│   │   └── ui/              # shadcn/ui & Magic UI components
+│   ├── features/            # Feature-Based Domains (Core logic)
+│   │   ├── about/
+│   │   ├── experience/
+│   │   ├── projects/
+│   │   ├── skills/
+│   │   ├── github/
+│   │   ├── blog/
+│   │   └── contact/
+│   │       ├── components/  # Feature-specific components
+│   │       └── data/        # Feature-specific static data
+│   ├── lib/                 # Utilities
 │   │   ├── utils.ts
 │   │   ├── animations.ts
 │   │   └── validations.ts
-│   ├── services/           # External services
+│   ├── services/            # External services
 │   │   └── email.ts
-│   └── types/              # TypeScript types
+│   └── types/               # TypeScript types
 │       └── index.ts
-├── public/                 # Static assets
-├── .env.local             # Environment variables
-├── next.config.mjs        # Next.js configuration
-├── tailwind.config.ts     # Tailwind configuration
-└── package.json           # Dependencies
+├── public/                  # Static assets
+├── .env.local               # Environment variables
+├── next.config.mjs          # Next.js configuration
+├── tailwind.config.ts       # Tailwind configuration
+└── package.json             # Dependencies
 ```
 
 ## 🛠️ Setup & Installation
@@ -152,7 +155,7 @@ npm run type-check   # Run TypeScript type checking
 
 ### Update Personal Information
 
-Edit the data files in the `/data` directory:
+Edit the data files located inside their respective feature directories (`src/features/[feature-name]/data/`):
 
 - `contact.ts` - Contact information and social links
 - `projects.ts` - Project showcase
@@ -162,17 +165,22 @@ Edit the data files in the `/data` directory:
 
 ### Modify Styling
 
-- Global styles: `app/globals.css`
+- Global styles: `app/globals.css` (Strictly inline utility approach)
 - Tailwind config: `tailwind.config.ts`
 - Theme colors: Update CSS variables in `globals.css`
 
 ### Add New Sections
 
-1. Create a new component in `components/sections/`
-2. Add data file in `data/` if needed
-3. Import and add to `app/page.tsx`
+1. Create a new feature directory in `src/features/[feature-name]`
+2. Add a `components/` folder for your React components.
+3. Add a `data/` folder for your static JSON/TS data.
+4. Export the main component and import it into `app/page.tsx` or its own route.
 
 ## 🔧 Key Features Implementation
+
+### Feature-Based Architecture
+
+The app uses domain-driven design, keeping components, data, and logic co-located under `src/features/` to prevent the `components` directory from becoming bloated.
 
 ### Global Components
 
@@ -180,22 +188,13 @@ Reusable components to reduce code duplication:
 
 - `SectionHeader` - Consistent section headers
 - `GlassCard` - Glass morphism card wrapper
-- `ScrollAnimation` - GSAP scroll animation wrapper
-
-### Data Separation
-
-All static content is separated into typed data files for easy updates and maintenance.
-
-### Type Safety
-
-Full TypeScript coverage with proper type definitions for all data models.
 
 ### Performance Optimizations
 
 - Next.js Image optimization
 - Font optimization with next/font
 - Code splitting with App Router
-- GSAP animation optimization
+- Tailwind utility-first CSS purging
 
 ## 📄 License
 
@@ -213,5 +212,6 @@ This project is open source and available under the MIT License.
 
 - Built with [Next.js](https://nextjs.org/)
 - UI components from [shadcn/ui](https://ui.shadcn.com/)
-- Animations powered by [GSAP](https://greensock.com/gsap/)
+- Animations powered by [Framer Motion](https://www.framer.com/motion/)
+- Interactive Elements by [Magic UI](https://magicui.design/)
 - Icons from [Lucide](https://lucide.dev/)
