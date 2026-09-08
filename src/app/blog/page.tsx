@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, Clock, Heart, MessageCircle, ArrowLeft } from 'lucide-react';
 import { getDevToArticles, formatDate, type DevToArticle } from '@/lib/devto';
-import { blogConfig, blogSection } from '@/data/blog';
+import { blogConfig, blogSection } from '@/features/blog/data/blog';
 import SectionHeader from '@/components/shared/SectionHeader';
 import GlassCard from '@/components/shared/GlassCard';
 

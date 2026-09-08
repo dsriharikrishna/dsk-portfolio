@@ -1,48 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 0%; /* Pure black for premium OLED feel */
+    --foreground: 0 0% 98%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 187 85% 53%;
-    --primary-foreground: 222 47% 6%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 2%;
 
-    --secondary: 222 47% 12%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 8%; /* Very subtle gray */
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 222 30% 15%;
-    --muted-foreground: 215 20% 55%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%; /* Slightly darker for better contrast hierarchy */
 
-    --accent: 187 85% 53%;
-    --accent-foreground: 222 47% 6%;
+    --accent: 262 83% 65%; /* Brightened purple for better contrast against pure black */
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
-    --ring: 187 85% 53%;
+    --border: 0 0% 10%; /* Subtle border */
+    --input: 0 0% 10%;
+    --ring: 262 83% 65%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Custom portfolio colors */
-    --cyan-glow: 187 85% 53%;
-    --navy-deep: 222 47% 4%;
-    --navy-mid: 222 47% 10%;
-    --slate-light: 215 20% 65%;
-    --gradient-start: 187 85% 53%;
-    --gradient-end: 262 83% 58%;
+    /* Magic UI Specific variables */
+    --color-1: 0 100% 63%;
+    --color-2: 270 100% 63%;
+    --color-3: 210 100% 63%;
+    --color-4: 195 100% 63%;
+    --color-5: 90 100% 63%;
+  }
+  .theme {
+    --animate-marquee: marquee var(--duration) infinite linear;
+    --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+    --animate-meteor: meteor 5s linear infinite;
   }
 }
 
@@ -57,11 +59,14 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
   }
 
   ::selection {
-    @apply bg-primary/30 text-foreground;
+    @apply bg-accent/30 text-foreground;
   }
 }
 
@@ -271,5 +276,47 @@
 
   .print\:break-inside-avoid {
     break-inside: avoid !important;
+  }
+}
+
+@layer utilities {
+  .animate-meteor {
+    animation: meteor 5s linear infinite;
+  }
+  .animate-marquee {
+    animation: marquee var(--duration) infinite linear;
+  }
+  .animate-marquee-vertical {
+    animation: marquee-vertical var(--duration) linear infinite;
+  }
+
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes meteor {
+  0% {
+    transform: rotate(var(--angle)) translateX(0);
+    opacity: 1;
+    }
+  70% {
+    opacity: 1;
+    }
+  100% {
+    transform: rotate(var(--angle)) translateX(-500px);
+    opacity: 0;
+    }
   }
 }

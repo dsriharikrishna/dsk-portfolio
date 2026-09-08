@@ -2,11 +2,18 @@
 export interface Project {
   title: string;
   subtitle: string;
-  description: string;
+  description?: string;
   tech: string[];
-  color: string;
+  color?: string;
   github?: string;
   live?: string;
+  category?: string;
+  featured?: boolean;
+  problem?: string;
+  solution?: string;
+  role?: string;
+  highlights?: string[];
+  caseStudySlug?: string;
 }
 
 // Skill Types

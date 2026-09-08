@@ -1,4 +1,3 @@
-import { Award, Trophy, BookOpen, Code2 } from 'lucide-react';
 
 export interface Certification {
     title: string;

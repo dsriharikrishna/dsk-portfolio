@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowLeft, Download, Mail, Phone, MapPin, ExternalLink, Github, Linkedin } from 'lucide-react';
-import { resumeData } from '@/data/resume';
-import GlassCard from '@/components/shared/GlassCard';
+import { resumeData } from '@/features/contact/data/resume';
 
 export default function ResumePage() {
   return (
