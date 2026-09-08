@@ -1,11 +1,16 @@
 'use client';
 
+import { Meteors } from '@/components/ui/meteors';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border/50 bg-background pt-12 pb-6 overflow-hidden">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-16">
+    <footer className="relative border-t border-border/50 bg-background pt-12 pb-6 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <Meteors number={20} />
+      </div>
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-16 relative z-10">
 
         {/* Footer Top */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
@@ -14,7 +19,7 @@ export default function Footer() {
           <div className="relative group flex flex-col gap-2 text-center md:text-left">
             {/* Focus Light Spotlight */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/30 via-accent/5 to-transparent blur-xl opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 pointer-events-none" />
-            
+
             <h4 className="relative z-10 text-xl font-black tracking-tight">
               Sriharikrishna{' '}
               <span className="text-accent drop-shadow-[0_0_10px_rgba(var(--accent),0.8)]">DASARI</span>
@@ -48,12 +53,12 @@ export default function Footer() {
 
             <div className="w-full flex flex-col items-center">
 
-                {/* Surname — Main Visual Focus */}
-              <h1 className="mt-1 text-6xl md:text-8xl lg:text-9xl leading-none font-black uppercase tracking-tight text-accent/30 group-hover:text-accent/70 transition-all duration-700">
+              {/* Surname — Main Visual Focus */}
+              <h1 className="mt-1 text-6xl md:text-8xl lg:text-9xl leading-none font-black uppercase tracking-tight text-transparent [-webkit-text-stroke:2px_hsl(var(--accent))] opacity-30 group-hover:opacity-80 transition-all duration-700 drop-shadow-sm">
                 {'DASARI'.split('').map((char, index) => (
                   <span
                     key={index}
-                    className="inline-block transition-all duration-500 hover:scale-110 hover:-translate-y-3 hover:text-accent"
+                    className="inline-block transition-all duration-500 hover:scale-110 hover:-translate-y-3 hover:text-accent hover:[-webkit-text-stroke:2px_hsl(var(--accent))]"
                   >
                     {char}
                   </span>
@@ -61,11 +66,11 @@ export default function Footer() {
               </h1>
 
               {/* First Name */}
-              <h2 className="text-5xl md:text-7xl lg:text-8xl leading-none font-black uppercase tracking-tight text-foreground/10 group-hover:text-foreground/20 transition-colors duration-500">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl leading-none font-black uppercase tracking-tight text-transparent [-webkit-text-stroke:1px_hsl(var(--foreground))] opacity-10 group-hover:opacity-30 transition-all duration-500">
                 {'SRIHARIKRISHNA'.split('').map((char, index) => (
                   <span
                     key={index}
-                    className="inline-block transition-all duration-500 hover:scale-110 hover:-translate-y-2 hover:text-foreground cursor-crosshair"
+                    className="inline-block transition-all duration-500 hover:scale-110 hover:-translate-y-2 hover:opacity-100 hover:text-foreground cursor-crosshair"
                   >
                     {char}
                   </span>

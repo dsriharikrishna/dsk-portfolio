@@ -13,7 +13,7 @@ export default function GlassCard({ children, className = '', hover = true }: Gl
   return (
     <div
       className={cn(
-        'glass-card',
+        'bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl',
         hover && 'hover:border-primary/30 transition-all duration-300',
         className
       )}

@@ -1,5 +1,4 @@
 import { Resend } from 'resend';
-import { ContactFormData } from '@/types';
 
 let resendInstance: Resend | null = null;
 
