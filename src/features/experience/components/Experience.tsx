@@ -68,8 +68,8 @@ export default function Experience() {
                       <Image 
                         src={exp.image} 
                         alt={exp.company} 
-                        width={300}
-                        height={300}
+                        width={560}
+                        height={560}
                         className="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500" 
                       />
                   )}
