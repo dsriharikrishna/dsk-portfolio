@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { aboutData } from '@/features/about/data/about';
 
 export default function About() {
@@ -39,36 +40,24 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right Content - The Reveal */}
-          <div className="relative flex justify-center lg:justify-end">
-            <div className="flex flex-col items-center gap-2">
-              {revealSteps.map((step, index) => (
-                <div key={step} className="flex flex-col items-center">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.5, delay: index * 0.15 }}
-                    className={`px-8 py-4 rounded-xl border font-mono tracking-wider text-sm md:text-base whitespace-nowrap
-                      ${index === revealSteps.length - 1 
-                        ? 'border-accent bg-accent/10 text-accent font-bold shadow-[0_0_20px_rgba(139,92,246,0.3)]' 
-                        : 'border-border bg-card text-foreground'}`}
-                  >
-                    {step}
-                  </motion.div>
-                  
-                  {index < revealSteps.length - 1 && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      whileInView={{ opacity: 1, height: 24 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 0.3, delay: (index * 0.15) + 0.2 }}
-                      className="w-[1px] bg-gradient-to-b from-border to-accent/50 my-2"
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
+          {/* Right Content - The Image */}
+          <div className="relative flex justify-center lg:justify-end w-full max-w-md mx-auto lg:max-w-none">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, rotate: -2 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, type: "spring" }}
+              className="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-border/50 bg-card/30"
+            >
+              <Image
+                src="/dsk-1.png"
+                alt="DSK illustration with goals and skills"
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+              />
+            </motion.div>
           </div>
         </div>
       </div>

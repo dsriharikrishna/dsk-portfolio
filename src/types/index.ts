@@ -28,6 +28,7 @@ export interface Experience {
   company: string;
   period: string;
   description: string[];
+  image?: string;
 }
 
 // Education Types

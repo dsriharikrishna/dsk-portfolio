@@ -12,6 +12,7 @@ export const experiences: Experience[] = [
       'Implemented role-based access control (RBAC) for secure feature access.',
       'Improved dashboard performance and UI responsiveness by optimizing state structure.',
     ],
+    image: '/signitives.png',
   },
   {
     title: 'Frontend Developer Intern',
@@ -22,6 +23,7 @@ export const experiences: Experience[] = [
       'Ensured cross-browser compatibility and mobile responsiveness.',
       'Practiced Git workflows and collaborative development practices.',
     ],
+    image: '/intern pe.png',
   },
 ];
 
