@@ -88,12 +88,12 @@ export default function Hero() {
               Explore My Work
             </button>
             <Link
-              href="/resume.pdf"
+              href="https://docs.google.com/document/d/123S0y3jKENNQMnQz_RROW853e8SCmQ5-/edit?usp=sharing&ouid=116905612445915389938&rtpof=true&sd=true"
               target="_blank"
               className="px-8 py-4 border border-border bg-card rounded-lg font-semibold 
                        hover:border-accent hover:text-accent transition-all duration-300 w-full sm:w-auto text-center"
             >
-              Download Resume
+              View Resume
             </Link>
           </motion.div>
 

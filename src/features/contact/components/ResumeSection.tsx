@@ -23,7 +23,7 @@ export default function ResumeSection() {
 
           <div className="flex flex-col items-center gap-4 mt-6">
             <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground">Make It Extremely Easy</h2>
-            <h3 className="text-3xl font-black">Download Resume</h3>
+            <h3 className="text-3xl font-black">View Resume</h3>
           </div>
           
           <p className="text-xl font-medium text-foreground/90">
@@ -35,8 +35,8 @@ export default function ResumeSection() {
             target="_blank"
             className="inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background rounded-xl font-bold text-lg hover:bg-foreground/90 hover:scale-105 transition-all duration-300 shadow-xl"
           >
-            <Download className="w-5 h-5" />
-            Download PDF
+            <FileText className="w-5 h-5" />
+            View Document
           </Link>
         </motion.div>
       </div>
