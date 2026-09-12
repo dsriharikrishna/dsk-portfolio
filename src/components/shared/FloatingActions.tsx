@@ -12,11 +12,14 @@ import {
   RefreshCw,
   Cpu,
   Compass,
+  Volume2,
+  VolumeX,
 } from 'lucide-react';
 import Link from 'next/link';
 import { resumeUrl } from '@/features/contact/data/resume';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { BOT_QUESTIONS, findBestBotAnswer, BotPrompt } from '@/services/botKnowledge';
+import { soundManager } from '@/lib/sound';
 
 interface BotMessage {
   id: string;
@@ -33,6 +36,19 @@ const CATEGORIES = ['All', 'Stack', 'Projects', 'Experience', 'About', 'Contact'
 export default function FloatingActions() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [isMuted, setIsMuted] = useState(false);
+
+  useEffect(() => {
+    setIsMuted(soundManager.getMuted());
+  }, []);
+
+  const handleToggleSound = () => {
+    const nextMuted = soundManager.toggleMute();
+    setIsMuted(nextMuted);
+    if (!nextMuted) {
+      soundManager.playVintageRelay();
+    }
+  };
   const [inputQuery, setInputQuery] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [activeThought, setActiveThought] = useState<string | null>(null);
@@ -43,7 +59,7 @@ export default function FloatingActions() {
 
   const [messages, setMessages] = useState<BotMessage[]>([
     {
-      id: 'welcome',
+      id: 'welcome',  
       sender: 'bot',
       text: "Hello! I'm Srihari's AI Portfolio Assistant, trained directly on his projects, skills, education, and professional experience. Ask me anything or select a topic below!",
       suggestedPrompts: [
@@ -252,7 +268,7 @@ export default function FloatingActions() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="w-[calc(100vw-2.5rem)] sm:w-[420px] h-[580px] bg-card/95 backdrop-blur-2xl border border-border/80 rounded-2xl shadow-2xl flex flex-col overflow-hidden mb-2"
+            className="w-[calc(100vw-2.5rem)] sm:w-[420px] h-[80vh] max-h-[80vh] bg-card/95 backdrop-blur-2xl border border-border/80 rounded-2xl shadow-2xl flex flex-col overflow-hidden mb-2"
           >
             {/* Header */}
             <div className="p-3.5 border-b border-border/60 bg-secondary/30 flex items-center justify-between">
@@ -278,6 +294,18 @@ export default function FloatingActions() {
                 </div>
               </div>
               <div className="flex items-center gap-1">
+                <button
+                  onClick={handleToggleSound}
+                  className="w-7 h-7 rounded-lg hover:bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={isMuted ? 'Unmute sound effects' : 'Mute sound effects'}
+                  title={isMuted ? 'Unmute clicks' : 'Mute clicks'}
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-3.5 h-3.5" />
+                  ) : (
+                    <Volume2 className="w-3.5 h-3.5" />
+                  )}
+                </button>
                 <button
                   onClick={handleResetChat}
                   className="w-7 h-7 rounded-lg hover:bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
@@ -475,7 +503,27 @@ export default function FloatingActions() {
         transition={{ duration: 0.4, delay: 0.8 }}
         className="flex items-center gap-2.5 p-1.5 rounded-full border border-border/80 bg-card/85 backdrop-blur-xl shadow-2xl"
       >
-        {/* 1. Resume Download Action Button */}
+        {/* 1. Vintage 80s/90s Mechanical Audio Sound Toggle */}
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button
+              onClick={handleToggleSound}
+              aria-label={isMuted ? 'Unmute 80s/90s Computer Sound' : 'Mute 80s/90s Computer Sound'}
+              className="group relative w-11 h-11 rounded-full bg-secondary/80 hover:bg-accent/20 border border-border hover:border-accent flex items-center justify-center text-foreground hover:text-accent transition-all duration-300 shadow-md hover:scale-105"
+            >
+              {isMuted ? (
+                <VolumeX className="w-5 h-5 text-muted-foreground transition-transform duration-200 group-hover:scale-110" />
+              ) : (
+                <Volume2 className="w-5 h-5 text-accent transition-transform duration-200 group-hover:scale-110" />
+              )}
+            </button>
+          </TooltipTrigger>
+          <TooltipContent side="left" className="font-mono text-xs">
+            {isMuted ? 'Unmute 80s/90s Sound' : '80s/90s Sound Active'}
+          </TooltipContent>
+        </Tooltip>
+
+        {/* 2. Resume Download Action Button */}
         <Tooltip>
           <TooltipTrigger asChild>
             <Link

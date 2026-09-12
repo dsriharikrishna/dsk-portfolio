@@ -79,6 +79,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
            - Added courtesies and farewell handling (`thanks`, `bye`, `see you`).
            - Added exact word-boundary matching for short technical acronyms (`AWS`, `SQL`, `CSS`, `Git`).
            - Resolved timer race conditions with synchronized cleanup of streaming intervals and thinking timeouts.
+           - Configured chat modal sizing with responsive fluid height filling 80% of screen height (`h-[80vh] max-h-[80vh]`) for optimal visibility across all viewport heights.
            - Added input autofocus on modal open.
          - Embedded direct section deep links (`#skills`, `#projects`, `#experience`, `#contact`) and resume links in answers.
          - Configured with `print:hidden` to ensure pristine printed resume exports.
@@ -96,8 +97,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
   - **Comprehensive Mobile Responsiveness Overhaul**:
     - **Navbar Capsule (`Navbar.tsx`)**: Added `max-w-[calc(100vw-1rem)]` overflow capsule with responsive padding (`px-2.5 py-1.5 sm:px-4 sm:py-2`) preventing mobile viewport overflow.
     - **Hero Typography (`Hero.tsx`)**: Scaled main display headline to `text-3xl sm:text-5xl md:text-6xl` preventing awkward breaks on 320px–375px screens.
-    - **Footer Signature (`Footer.tsx`)**: Scaled typographic names to `text-4xl sm:text-6xl md:text-8xl` with `break-all sm:break-normal` to eliminate mobile horizontal scroll issues.
+  - **Authentic 80s/90s Vintage Desktop Computer Audio Synthesis (`sound.ts` & `smooth-cursor.tsx`)**:
+    - Created an authentic, zero-asset Web Audio API synthesis engine in [`src/lib/sound.ts`](file:///c:/PROJECTS/dsk-portfolio/src/lib/sound.ts) replicating the acoustic mechanics of 1980s/1990s workstation hardware:
+      - **80s/90s Vintage Mechanical Mouse Switch (`playVintageClick` / `playClick`)**: Multi-layered acoustic synthesis combining a 16ms high-frequency plastic microswitch impact transient (bandpassed white noise at 3200Hz), a tactile bucking-spring resonance ping (1620Hz down to 260Hz), and a hollow ABS beige plastic chassis body thump (240Hz down to 75Hz) with audible 0.40 gain.
+      - **80s/90s Mechanical Relay & Model M Bucking Spring (`playVintageRelay` / `playPop`)**: Chunky solenoid strike and metallic return ping for interactive buttons, links, cards, and modal triggers (square transient at 2400Hz + ringing bandpass triangle at 1920Hz down to 380Hz + deep 180Hz bottom-out thud).
+      - **Vintage PC Motherboard Speaker Beep (`playVintageBeep`)**: Classic 1980s IBM PC 5150 / DOS POST 890Hz square wave prompt chirp.
+      - **Modern Browser Autoplay / AudioContext Auto-Unlock**: Automatically hooks user interaction events (`pointerdown`, `mousedown`, `keydown`, `touchstart`) to immediately resume and warm the `AudioContext`, ensuring 0 dropped clicks or initial audio delays.
+    - Integrated audio triggers globally on `pointerdown` in [`SmoothCursor.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/ui/smooth-cursor.tsx) with a 40ms synthetic event debounce to deliver instant tactile feedback across both desktop and mobile.
+    - Added an accessible sound toggle button with `Volume2` / `VolumeX` directly into the floating action capsule dock in [`FloatingActions.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/shared/FloatingActions.tsx) with persistent `localStorage` preference state.
 - **Changed Files**:
+  - `src/lib/sound.ts`
+  - `src/components/ui/smooth-cursor.tsx`
   - `src/app/not-found.tsx`
   - `src/app/error.tsx`
   - `src/app/global-error.tsx`

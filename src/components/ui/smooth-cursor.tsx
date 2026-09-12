@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FC } from 'react';
 import { AnimatePresence, motion, useMotionValue, useSpring } from 'motion/react';
+import { soundManager } from '@/lib/sound';
 
 export interface SmoothCursorProps {
   cursor?: React.ReactNode;
@@ -59,6 +60,38 @@ export function SmoothCursor({ cursor }: SmoothCursorProps) {
     stiffness: 260,
     mass: 0.2,
   });
+
+  // 1. Global 80s/90s Vintage Computer Audio Click Handler
+  useEffect(() => {
+    let lastSoundTime = 0;
+
+    const handleGlobalPointerDown = (e: PointerEvent) => {
+      // Auto-unlock audio context on user gesture
+      soundManager.unlockAudio();
+
+      const now = performance.now();
+      if (now - lastSoundTime < 40) return; // Prevent double-trigger on synthetic events
+      lastSoundTime = now;
+
+      const target = e.target as HTMLElement | null;
+      const isClickableTarget = Boolean(
+        target?.closest(
+          'a, button, [role="button"], input[type="submit"], input[type="button"], select, label, summary, [data-cursor="clickable"], .cursor-pointer'
+        )
+      );
+
+      if (isClickableTarget) {
+        soundManager.playVintageRelay();
+      } else {
+        soundManager.playVintageClick();
+      }
+    };
+
+    window.addEventListener('pointerdown', handleGlobalPointerDown, { capture: true, passive: true });
+    return () => {
+      window.removeEventListener('pointerdown', handleGlobalPointerDown, { capture: true });
+    };
+  }, []);
 
   // Detect fine pointer support (desktop mouse/trackpad)
   useEffect(() => {
