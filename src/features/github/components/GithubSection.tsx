@@ -3,41 +3,43 @@
 import { motion } from 'framer-motion';
 import { Github, GitPullRequest, GitCommit, Star, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import SectionHeader from '@/components/shared/SectionHeader';
 
 export default function GithubSection() {
   return (
-    <section className="py-24 relative border-t border-border/50">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid md:grid-cols-2 gap-12 items-center w-full">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="flex flex-col gap-6"
-            >
-              <div className="flex flex-col gap-4">
-                <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground">Open Source / Code</h2>
-                <h3 className="text-3xl font-black flex items-center gap-4">
-                  <Github className="w-10 h-10" />
-                  GitHub
-                </h3>
-              </div>
-              <p className="text-xl text-muted-foreground">
-                I don't pretend GitHub activity is my primary achievement, but it serves as supporting evidence of how I write, review, and ship code.
-              </p>
+    <section className="py-8 md:py-12 relative border-t border-border/50">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="w-full"
+        >
+          <SectionHeader
+            tag="OPEN SOURCE"
+            title="GitHub"
+            titleHighlight="Ecosystem"
+            subtitle="Supporting evidence of how I write, test, review, and ship open source repositories."
+            className="!mb-0"
+          />
+        </motion.div>
 
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="https://github.com/dasarisriharikrishna"
-                  target="_blank"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg font-semibold transition-colors"
-                >
-                  Explore GitHub
-                  <ExternalLink className="w-4 h-4" />
-                </Link>
-              </div>
-            </motion.div>
+        <div className="grid md:grid-cols-2 gap-12 items-center w-full max-w-4xl mx-auto">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6">
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Explore my public repositories, architectural prototypes, and engineering contributions across full-stack applications.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="https://github.com/dasarisriharikrishna"
+                target="_blank"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg font-semibold transition-colors"
+              >
+                <Github className="w-5 h-5" />
+                Explore GitHub
+                <ExternalLink className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -51,7 +53,7 @@ export default function GithubSection() {
               <div className="text-3xl font-black">50+</div>
               <div className="text-xs font-mono uppercase text-muted-foreground tracking-widest">Repositories</div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}

@@ -31,6 +31,12 @@ A modern, production-ready portfolio website built with Next.js 16, TypeScript, 
 
 ```
 dsk-portfolio/
+├── docs/                    # Unified documentation directory
+│   ├── README.md            # Documentation overview & index
+│   ├── GEMINI.md            # AI agent context & guidelines
+│   ├── LOGS.md              # Historical commit-by-commit changelog
+│   ├── CHANGELOG.md         # Changelog pointer
+│   └── DEVTO_ARTICLE.md     # Published Dev.to article documentation
 ├── src/
 │   ├── app/                 # Next.js App Router
 │   │   ├── api/contact/     # Contact form API endpoint
@@ -65,6 +71,14 @@ dsk-portfolio/
 ├── tailwind.config.ts       # Tailwind configuration
 └── package.json             # Dependencies
 ```
+
+## 📚 Documentation
+
+Detailed documentation and guides are organized under the [`docs/`](./docs) directory:
+
+- [**AI Guidelines (`GEMINI.md`)**](./docs/GEMINI.md): Comprehensive developer & AI agent guidelines, architecture patterns, and coding standards.
+- [**Commit Logs & Changelog (`LOGS.md`)**](./docs/LOGS.md): Full commit-by-commit tracking and release milestone history.
+- [**Dev.to Article (`DEVTO_ARTICLE.md`)**](./docs/DEVTO_ARTICLE.md): Technical deep-dive into building the portfolio.
 
 ## 🛠️ Setup & Installation
 

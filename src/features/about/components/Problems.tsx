@@ -34,22 +34,25 @@ const problems = [
   },
 ];
 
+import SectionHeader from '@/components/shared/SectionHeader';
+
 export default function Problems() {
   return (
-    <section id="problems" className="py-32 relative bg-secondary/20 border-t border-border/50 overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10 max-w-7xl flex flex-col gap-20">
+    <section id="problems" className="py-8 md:py-12 relative bg-secondary/20 border-t border-border/50 overflow-hidden">
+      <div className="container mx-auto px-6 relative z-10 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="max-w-3xl flex flex-col gap-6"
+          className="w-full"
         >
-          <h2 className="text-3xl font-black">
-            Problems I <span className="text-accent">Like Solving</span>
-          </h2>
-          <p className="text-xl text-muted-foreground">
-            Why should someone hire me? Because I enjoy untangling these exact challenges.
-          </p>
+          <SectionHeader
+            tag="CHALLENGES"
+            title="Problems I"
+            titleHighlight="Like Solving"
+            subtitle="Why should someone hire me? Because I enjoy untangling these exact challenges."
+            className="!mb-0"
+          />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -60,16 +63,15 @@ export default function Problems() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`p-8 rounded-2xl border border-border bg-card relative group hover:border-accent transition-colors flex flex-col gap-6 ${
-                index === problems.length - 1 ? 'md:col-span-2 lg:col-span-1' : ''
-              }`}
+              className={`p-8 rounded-2xl border border-border bg-card relative group hover:border-accent transition-colors flex flex-col gap-6 ${index === problems.length - 1 ? 'md:col-span-2 lg:col-span-1' : ''
+                }`}
             >
               <div className="absolute top-8 right-8 font-mono text-3xl font-black text-muted/20 group-hover:text-accent/20 transition-colors">
                 {problem.number}
               </div>
-              
+
               <h3 className="text-2xl font-bold pr-12">{problem.title}</h3>
-              
+
               <div>
                 <p className="text-lg text-muted-foreground italic border-l-2 border-accent/50 pl-4 py-1">
                   &quot;{problem.question}&quot;

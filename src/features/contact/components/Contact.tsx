@@ -3,10 +3,11 @@
 import { motion } from 'framer-motion';
 import { Mail, ArrowRight, Github, Linkedin, Twitter } from 'lucide-react';
 import Link from 'next/link';
+import SectionHeader from '@/components/shared/SectionHeader';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-32 relative bg-secondary/10 border-t border-border/50 overflow-hidden">
+    <section id="contact" className="py-16 md:py-20 relative bg-secondary/10 border-t border-border/50 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
@@ -16,17 +17,15 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="flex flex-col gap-12"
+          className="flex flex-col gap-8"
         >
-          <div className="flex flex-col gap-6">
-            <h2 className="text-3xl font-black tracking-tight">
-              Have a Product <span className="text-accent">Problem?</span>
-            </h2>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              I don't just write code. I solve complex business problems through scalable interfaces. Let's figure it out together.
-            </p>
-          </div>
+          <SectionHeader
+            tag="GET IN TOUCH"
+            title="Have a Product"
+            titleHighlight="Problem?"
+            subtitle="I don't just write code. I solve complex business problems through scalable interfaces. Let's figure it out together."
+            className="!mb-0"
+          />
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link

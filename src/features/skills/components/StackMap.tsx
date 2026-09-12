@@ -28,6 +28,8 @@ const interactiveNodes = [
   { id: 'db', label: 'PostgreSQL', x: 50, y: 90, details: { title: 'PostgreSQL', brief: 'An advanced, enterprise-class open-source relational database built for data integrity and heavy workloads.', projects: ['Data Heavy Apps'], why: ['Relational Data', 'Reliability', 'Complex Queries'] } },
 ];
 
+import SectionHeader from '@/components/shared/SectionHeader';
+
 export default function StackMap() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -48,19 +50,24 @@ export default function StackMap() {
   };
 
   return (
-    <section className="py-32 relative border-t border-border/50">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-20">
+    <section className="py-8 md:py-12 relative border-t border-border/50">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="flex flex-col gap-4 text-center items-center"
+          className="w-full"
         >
-          <h2 className="text-3xl font-black">My Engineering Stack</h2>
-          <p className="text-xl text-muted-foreground">Tools I use to solve problems.</p>
+          <SectionHeader
+            tag="TECH ECOSYSTEM"
+            title="Interactive"
+            titleHighlight="Stack Map"
+            subtitle="Interactive map of core frameworks, state libraries, and infrastructure tools I use to build scalable products."
+            className="!mb-0"
+          />
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-12 w-full">
+        <div className="grid lg:grid-cols-12 gap-8 w-full">
           {/* Stack Map Visualization */}
           <div className="lg:col-span-8 bg-card border border-border rounded-2xl p-8 relative min-h-[500px]">
             <div className="absolute inset-0 p-8">

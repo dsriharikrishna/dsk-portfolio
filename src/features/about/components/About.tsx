@@ -3,41 +3,41 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { aboutData } from '@/features/about/data/about';
+import SectionHeader from '@/components/shared/SectionHeader';
 
 export default function About() {
-  const revealSteps = aboutData.highlights.map((h) => h.title);
-
   return (
-    <section id="about" className="py-32 relative border-t border-border/50">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
-          {/* Left Content - The Story */}
-          <div className="flex flex-col gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="flex flex-col gap-2"
-            >
-              <h3 className="font-mono text-sm uppercase tracking-widest text-muted-foreground">{aboutData.tag}</h3>
-              <h2 className="text-3xl font-black leading-[1.1]">
-                {aboutData.title} <span className="text-accent">{aboutData.titleHighlight}</span>
-              </h2>
-            </motion.div>
+    <section id="about" className="pt-20 pb-16 lg:pt-32 lg:pb-20relative border-t border-border/50">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="w-full"
+        >
+          <SectionHeader
+            tag={aboutData.tag}
+            title={aboutData.title}
+            titleHighlight={aboutData.titleHighlight}
+            subtitle="Full Stack Product Engineer specializing in scalable interfaces and clean architectural systems."
+            className="!mb-0"
+          />
+        </motion.div>
 
-            <div className="flex flex-col gap-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
-              {aboutData.summary.map((paragraph, index) => (
-                <motion.p
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ delay: 0.1 * (index + 1) }}
-                >
-                  {paragraph}
-                </motion.p>
-              ))}
-            </div>
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center w-full">
+          {/* Left Content - The Story */}
+          <div className="flex flex-col gap-4 text-base md:text-lg text-muted-foreground leading-relaxed">
+            {aboutData.summary.map((paragraph, index) => (
+              <motion.p
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 0.1 * (index + 1) }}
+              >
+                {paragraph}
+              </motion.p>
+            ))}
           </div>
 
           {/* Right Content - The Image */}

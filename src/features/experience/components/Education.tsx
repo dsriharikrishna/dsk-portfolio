@@ -57,14 +57,16 @@ export default function Education() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="education" className="py-24 relative border-t border-border/50">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-16">
+    <section ref={sectionRef} id="education" className="py-8 md:py-12 relative border-t border-border/50">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         {/* Section Header */}
         <div className="edu-header w-full">
           <SectionHeader
             tag="ACADEMIC BACKGROUND"
-            title="My "
+            title="Formal"
             titleHighlight="Education"
+            subtitle="Academic foundation and coursework in computer science and engineering."
+            className="!mb-0"
           />
         </div>
 

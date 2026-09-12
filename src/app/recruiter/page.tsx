@@ -20,7 +20,7 @@ export default function RecruiterPage() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-12">
+    <div>
       <About />
       <Experience />
       <Certifications />

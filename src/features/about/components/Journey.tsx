@@ -31,24 +31,30 @@ const journeys = [
   },
 ];
 
+import SectionHeader from '@/components/shared/SectionHeader';
+
 export default function Journey() {
   const scrollToSection = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="py-20 border-t border-border/50 bg-secondary/30 relative">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-16">
+    <section className="py-14 md:py-16 border-t border-border/50 bg-secondary/30 relative">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center gap-4 text-center"
+          className="w-full"
         >
-          <h2 className="font-mono text-sm tracking-widest text-muted-foreground uppercase">
-            How do you want to explore?
-          </h2>
+          <SectionHeader
+            tag="NAVIGATION"
+            title="How Do You Want to"
+            titleHighlight="Explore?"
+            subtitle="Choose a personalized path tailored to your role and focus areas."
+            className="!mb-0"
+          />
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6 w-full">

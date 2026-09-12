@@ -31,21 +31,28 @@ const principles = [
   },
 ];
 
+import SectionHeader from '@/components/shared/SectionHeader';
+
 export default function Principles() {
   return (
-    <section className="py-32 relative border-t border-border/50">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-20">
+    <section className="pt-20 pb-16 lg:pt-32 lg:pb-20 relative border-t border-border/50">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="flex flex-col gap-4 text-center items-center"
+          className="w-full"
         >
-          <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground">How I Think</h2>
-          <h3 className="text-3xl font-black">Engineering Principles</h3>
+          <SectionHeader
+            tag="HOW I THINK"
+            title="Engineering"
+            titleHighlight="Principles"
+            subtitle="Core philosophies that guide my architecture, code quality, and decision-making."
+            className="!mb-0"
+          />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-16">
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-10">
           {principles.map((principle, index) => {
             const Icon = principle.icon;
             return (

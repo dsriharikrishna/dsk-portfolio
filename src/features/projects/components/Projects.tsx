@@ -3,28 +3,34 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { projects } from '@/features/projects/data/projects';
+import SectionHeader from '@/components/shared/SectionHeader';
 
 export default function Projects() {
   const featuredProjects = projects.filter((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
 
   return (
-    <section id="product" className="py-32 relative border-t border-border/50">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-16">
+    <section id="product" className="pt-20 pb-16 lg:pt-32 lg:pb-20 relative border-t border-border/50">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="flex flex-col gap-4 text-center items-center"
+          className="w-full"
         >
-          <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground">Case Studies</h2>
-          <h3 className="text-3xl font-black">Featured Systems</h3>
+          <SectionHeader
+            tag="CASE STUDIES"
+            title="Featured"
+            titleHighlight="Systems"
+            subtitle="In-depth case studies showcasing architectural decisions, performance tradeoffs, and measurable product outcomes."
+            className="!mb-0"
+          />
         </motion.div>
 
         {/* Featured Projects */}
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8 md:gap-10">
           {featuredProjects.map((project, index) => (
-            <motion.div 
+            <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +39,7 @@ export default function Projects() {
               className="bg-card border border-border rounded-3xl overflow-hidden shadow-2xl relative"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent pointer-events-none" />
-              
+
               <div className="p-8 md:p-12 lg:p-16 flex flex-col gap-12 relative z-10">
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center gap-4">
@@ -54,7 +60,7 @@ export default function Projects() {
                       {project.problem}
                     </p>
                   </div>
-                  
+
                   <div className="flex flex-col gap-4">
                     <h5 className="font-mono text-sm uppercase tracking-widest text-accent">The Solution</h5>
                     <div className="bg-secondary/50 rounded-xl p-6 text-sm text-muted-foreground leading-relaxed">
@@ -85,7 +91,7 @@ export default function Projects() {
         {/* Supporting Systems */}
         <div className="grid md:grid-cols-2 gap-8 w-full">
           {otherProjects.map((project, index) => (
-            <motion.div 
+            <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

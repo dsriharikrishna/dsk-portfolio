@@ -3,32 +3,38 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { experiences } from '@/features/experience/data/experience';
+import SectionHeader from '@/components/shared/SectionHeader';
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-32 relative bg-secondary/20 border-t border-border/50">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-16">
+    <section id="experience" className="py-8 md:py-12 relative bg-secondary/20 border-t border-border/50">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="flex flex-col gap-4 text-center items-center"
+          className="w-full"
         >
-          <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground">Experience</h2>
-          <h3 className="text-3xl font-black text-accent">Career Timeline</h3>
+          <SectionHeader
+            tag="EXPERIENCE"
+            title="Career"
+            titleHighlight="Timeline"
+            subtitle="My professional journey building products, scaling frontend systems, and driving measurable impact."
+            className="!mb-0"
+          />
         </motion.div>
 
-        <div className="flex flex-col gap-24 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent w-full">
+        <div className="flex flex-col gap-12 md:gap-16 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent w-full">
           {experiences.map((exp, index) => {
             const isEven = index % 2 === 0;
             const numberString = (index + 1).toString().padStart(2, '0');
 
             return (
               <div key={index} className="relative flex items-center justify-between md:justify-center md:odd:flex-row-reverse group is-active w-full">
-                
+
                 {/* Content Side */}
                 <div className="w-[calc(100%-4rem)] md:w-auto md:flex-1 flex md:justify-end md:group-odd:justify-start md:px-8">
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, x: isEven ? 20 : -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -61,17 +67,17 @@ export default function Experience() {
                 `}>
                   {numberString}
                 </div>
-                
+
                 {/* Opposite Side Image */}
                 <div className="hidden md:flex md:flex-1 items-center justify-center p-8">
                   {exp.image && (
-                      <Image 
-                        src={exp.image} 
-                        alt={exp.company} 
-                        width={560}
-                        height={560}
-                        className="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500" 
-                      />
+                    <Image
+                      src={exp.image}
+                      alt={exp.company}
+                      width={560}
+                      height={560}
+                      className="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+                    />
                   )}
                 </div>
               </div>

@@ -3,10 +3,11 @@
 import { motion } from 'framer-motion';
 import { Download, FileText } from 'lucide-react';
 import Link from 'next/link';
+import SectionHeader from '@/components/shared/SectionHeader';
 
 export default function ResumeSection() {
   return (
-    <section className="py-24 relative border-t border-border/50 overflow-hidden">
+    <section className="py-16 md:py-20 relative border-t border-border/50 overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -15,20 +16,21 @@ export default function ResumeSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="bg-card border border-border p-12 rounded-3xl text-center shadow-2xl relative flex flex-col items-center gap-8"
+          className="bg-card border border-border p-8 md:p-10 rounded-3xl text-center shadow-2xl relative flex flex-col items-center gap-6"
         >
           <div className="absolute -top-6 left-1/2 -translate-x-1/2 p-4 bg-background border border-border rounded-2xl">
             <FileText className="w-8 h-8 text-accent" />
           </div>
 
-          <div className="flex flex-col items-center gap-4 mt-6">
-            <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground">Make It Extremely Easy</h2>
-            <h3 className="text-3xl font-black">View Resume</h3>
+          <div className="w-full mt-6">
+            <SectionHeader
+              tag="CREDENTIALS"
+              title="Professional"
+              titleHighlight="Resume"
+              subtitle="Frontend-focused Full Stack Product Engineer"
+              className="!mb-0"
+            />
           </div>
-          
-          <p className="text-xl font-medium text-foreground/90">
-            Frontend-focused Full Stack Product Engineer
-          </p>
 
           <Link
             href="https://docs.google.com/document/d/123S0y3jKENNQMnQz_RROW853e8SCmQ5-/edit?usp=sharing&ouid=116905612445915389938&rtpof=true&sd=true"

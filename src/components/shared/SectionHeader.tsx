@@ -1,11 +1,11 @@
 'use client';
 
-import { ReactNode } from 'react';
+import React from 'react';
 
 interface SectionHeaderProps {
-  tag: string;
+  tag?: string;
   title: string;
-  titleHighlight: string;
+  titleHighlight?: string;
   subtitle?: string;
   className?: string;
 }
@@ -18,13 +18,28 @@ export default function SectionHeader({
   className = '',
 }: SectionHeaderProps) {
   return (
-    <div className={`text-center mb-16 ${className}`}>
-      <span className="text-primary font-mono text-sm tracking-wider">{tag}</span>
-      <h2 className="text-3xl md:text-5xl font-bold mb-4 font-heading tracking-tight mt-4">
+    <div className={`flex flex-col text-center items-center mb-6 md:mb-8 ${className}`}>
+      {tag && (
+        <span className="font-mono text-xs md:text-sm uppercase tracking-widest text-accent font-semibold inline-block">
+          {tag.startsWith('//') ? tag : `// ${tag}`}
+        </span>
+      )}
+      <h2 className="text-3xl md:text-5xl font-black font-heading tracking-tight mt-2 leading-[1.15]">
         {title}
-        <span className="bg-gradient-to-r from-primary via-[hsl(220,85%,65%)] to-[hsl(262,83%,58%)] bg-clip-text text-transparent">{titleHighlight}</span>
+        {titleHighlight && (
+          <>
+            {' '}
+            <span className="bg-gradient-to-r from-primary via-[hsl(220,85%,65%)] to-accent bg-clip-text text-transparent">
+              {titleHighlight}
+            </span>
+          </>
+        )}
       </h2>
-      {subtitle && <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto mt-4">{subtitle}</p>}
+      {subtitle && (
+        <p className="text-muted-foreground text-sm md:text-base max-w-2xl mt-2.5 leading-relaxed mx-auto">
+          {subtitle}
+        </p>
+      )}
     </div>
   );
 }

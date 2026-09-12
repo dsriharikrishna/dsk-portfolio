@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <Meteors number={20} />
       </div>
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-16 relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10 relative z-10">
 
         {/* Footer Top */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">

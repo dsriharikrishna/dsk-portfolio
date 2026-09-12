@@ -99,20 +99,27 @@ const labTopics = [
   },
 ];
 
+import SectionHeader from '@/components/shared/SectionHeader';
+
 export default function EngineeringLab() {
   const [activeTopic, setActiveTopic] = useState(labTopics[0].id);
 
   return (
-    <section id="engineer" className="py-32 relative bg-secondary/10 border-t border-border/50">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-16">
+    <section id="engineer" className="py-8 md:py-12 relative bg-secondary/10 border-t border-border/50">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="flex flex-col gap-4"
+          className="w-full"
         >
-          <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground">Engineering Lab</h2>
-          <h3 className="text-3xl font-black">Interactive Playground</h3>
+          <SectionHeader
+            tag="ENGINEERING LAB"
+            title="Interactive"
+            titleHighlight="Playground"
+            subtitle="Explore architectural tradeoffs, state management paradigms, and performance optimizations."
+            className="!mb-0"
+          />
         </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-8">
@@ -122,11 +129,10 @@ export default function EngineeringLab() {
               <button
                 key={topic.id}
                 onClick={() => setActiveTopic(topic.id)}
-                className={`text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium ${
-                  activeTopic === topic.id
+                className={`text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium ${activeTopic === topic.id
                     ? 'bg-accent/10 border border-accent/50 text-accent'
                     : 'bg-card border border-border text-muted-foreground hover:bg-secondary hover:text-foreground'
-                }`}
+                  }`}
               >
                 {topic.title}
               </button>

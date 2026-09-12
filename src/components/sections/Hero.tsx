@@ -22,7 +22,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-32 pb-20"
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-20 pb-16 lg:pt-32 lg:pb-20"
     >
       {/* Ambient Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
@@ -31,9 +31,9 @@ export default function Hero() {
       </div>
       <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-accent opacity-20 blur-[100px]"></div>
 
-      <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center h-full max-w-7xl">
+      <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 items-center h-full max-w-7xl">
         {/* Left Content */}
-        <div className="flex flex-col items-start gap-8 w-full">
+        <div className="flex flex-col items-start gap-5 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl font-black leading-[1.1]"
+            className="text-4xl sm:text-5xl md:text-6xl font-black font-heading tracking-tight leading-[1.08]"
           >
             I BUILD PRODUCTS,
             <br />

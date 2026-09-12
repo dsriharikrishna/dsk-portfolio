@@ -25,11 +25,11 @@ export default function BlogPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Header */}
-      <section className="py-20 relative">
+      <section className="pt-20 pb-16 lg:pt-32 lg:pb-20 relative">
         <div className="container mx-auto px-6">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-4"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home

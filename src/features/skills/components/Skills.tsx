@@ -5,6 +5,7 @@ import { Marquee } from '@/components/ui/marquee';
 import { Highlighter } from '@/components/ui/highlighter';
 import { TextReveal } from '@/components/ui/text-reveal';
 import { cn } from '@/lib/utils';
+import SectionHeader from '@/components/shared/SectionHeader';
 
 export default function Skills() {
   // We'll flatten some skills to create continuous marquee rows
@@ -13,18 +14,19 @@ export default function Skills() {
   const toolsSkills = skillCategories.find(c => c.title === 'Tools & Others')?.skills || [];
 
   return (
-    <section id="skills" className="relative bg-secondary/20 flex flex-col pb-24">
+    <section id="skills" className="relative bg-secondary/20 flex flex-col pb-16 md:pb-20">
       {/* Cinematic Scroll Reveal Title */}
-      <div className="z-10 flex min-h-[100vh] items-center justify-center bg-transparent">
+      <div className="z-10 flex min-h-[50vh] md:min-h-[60vh] items-center justify-center bg-transparent">
         <TextReveal>Technologies and tools I use to bring ideas to life</TextReveal>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 -mt-32">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">
-            My <span className="text-primary drop-shadow-[0_0_15px_rgba(var(--primary),0.5)]">Skillset</span>
-          </h2>
-        </div>
+      <div className="container mx-auto px-6 relative z-10 -mt-12 md:-mt-16">
+        <SectionHeader
+          tag="SKILLS & PROFICIENCIES"
+          title="Technical"
+          titleHighlight="Skillset"
+          subtitle="Modern frontend frameworks, robust state architectures, and full-stack engineering tools."
+        />
 
         {/* Marquee Rows */}
         <div className="relative flex flex-col items-center justify-center overflow-hidden w-full gap-8">

@@ -53,14 +53,15 @@ export default function Certifications() {
   };
 
   return (
-    <section ref={sectionRef} id="certifications" className="py-24 relative border-t border-border/50">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-16">
+    <section ref={sectionRef} id="certifications" className="py-8 md:py-12 relative border-t border-border/50">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <div className="w-full">
           <SectionHeader
             tag={certificationsSection.tag}
             title={certificationsSection.title}
             titleHighlight={certificationsSection.titleHighlight}
             subtitle={certificationsSection.subtitle}
+            className="!mb-0"
           />
         </div>
 

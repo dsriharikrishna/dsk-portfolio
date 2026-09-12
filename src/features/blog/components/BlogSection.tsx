@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { BookOpen, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import SectionHeader from '@/components/shared/SectionHeader';
 
 const blogTopics = [
   'React', 'Next.js', 'TypeScript', 'Architecture', 'Performance', 'Docker', 'AWS', 'AI Products'
@@ -10,22 +11,21 @@ const blogTopics = [
 
 export default function BlogSection() {
   return (
-    <section className="py-24 relative bg-secondary/10 border-t border-border/50">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-16">
+    <section className="py-8 md:py-12 relative bg-secondary/10 border-t border-border/50">
+      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="flex flex-col gap-6 text-center items-center"
+          className="w-full"
         >
-          <div className="flex items-center justify-center gap-3">
-            <BookOpen className="w-6 h-6 text-accent" />
-            <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground">Writing & Learning</h2>
-          </div>
-          <h3 className="text-3xl font-black">Things I've Learned <br className="hidden md:block"/>Building Products</h3>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            I write about the engineering challenges I face and the solutions I implement.
-          </p>
+          <SectionHeader
+            tag="WRITING & LEARNING"
+            title="Engineering"
+            titleHighlight="Insights"
+            subtitle="Deep dives into technical challenges, architecture patterns, and lessons learned building real-world products."
+            className="!mb-0"
+          />
         </motion.div>
 
         <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
