@@ -10,12 +10,15 @@ export default function Projects() {
   const otherProjects = projects.filter((p) => !p.featured);
 
   return (
-    <section id="product" className="pt-20 pb-16 lg:pt-32 lg:pb-20 relative border-t border-border/50">
+    <section
+      id="product"
+      className="pt-20 pb-16 lg:pt-32 lg:pb-20 relative border-t border-border/50"
+    >
       <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           className="w-full"
         >
           <SectionHeader
@@ -34,7 +37,7 @@ export default function Projects() {
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: '-100px' }}
               transition={{ delay: index * 0.1 }}
               className="bg-card border border-border rounded-3xl overflow-hidden shadow-2xl relative"
             >
@@ -55,14 +58,18 @@ export default function Projects() {
 
                 <div className="grid md:grid-cols-2 gap-12">
                   <div className="flex flex-col gap-4">
-                    <h5 className="font-mono text-sm uppercase tracking-widest text-accent">The Problem</h5>
+                    <h5 className="font-mono text-sm uppercase tracking-widest text-accent">
+                      The Problem
+                    </h5>
                     <p className="text-muted-foreground leading-relaxed italic border-l-2 border-border pl-4">
                       {project.problem}
                     </p>
                   </div>
 
                   <div className="flex flex-col gap-4">
-                    <h5 className="font-mono text-sm uppercase tracking-widest text-accent">The Solution</h5>
+                    <h5 className="font-mono text-sm uppercase tracking-widest text-accent">
+                      The Solution
+                    </h5>
                     <div className="bg-secondary/50 rounded-xl p-6 text-sm text-muted-foreground leading-relaxed">
                       {project.solution}
                     </div>
@@ -75,10 +82,17 @@ export default function Projects() {
                     <div className="font-medium text-sm">{project.role}</div>
                   </div>
                   <div className="flex flex-col gap-1 col-span-3">
-                    <div className="text-xs font-mono uppercase text-muted-foreground">Tech Stack</div>
+                    <div className="text-xs font-mono uppercase text-muted-foreground">
+                      Tech Stack
+                    </div>
                     <div className="flex flex-wrap gap-2 mt-1">
-                      {project.tech.map(t => (
-                        <span key={t} className="px-2 py-1 bg-secondary rounded text-xs font-medium text-foreground/80">{t}</span>
+                      {project.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2 py-1 bg-secondary rounded text-xs font-medium text-foreground/80"
+                        >
+                          {t}
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -95,7 +109,7 @@ export default function Projects() {
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: '-100px' }}
               transition={{ delay: index * 0.1 }}
               className="bg-card border border-border rounded-2xl p-8 hover:border-accent/50 transition-colors group cursor-pointer flex flex-col gap-6"
             >
@@ -112,17 +126,23 @@ export default function Projects() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-2 mt-auto pt-4">
-                {project.tech.slice(0, 4).map(tech => (
-                  <span key={tech} className="px-2 py-1 bg-secondary rounded text-xs font-medium text-foreground/80">{tech}</span>
+                {project.tech.slice(0, 4).map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2 py-1 bg-secondary rounded text-xs font-medium text-foreground/80"
+                  >
+                    {tech}
+                  </span>
                 ))}
                 {project.tech.length > 4 && (
-                  <span className="px-2 py-1 bg-secondary rounded text-xs font-medium text-foreground/80">+{project.tech.length - 4}</span>
+                  <span className="px-2 py-1 bg-secondary rounded text-xs font-medium text-foreground/80">
+                    +{project.tech.length - 4}
+                  </span>
                 )}
               </div>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

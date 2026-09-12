@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ArrowDown, Terminal, Monitor, Cpu, Database, Cloud } from 'lucide-react';
+import { Terminal, Monitor, Cpu, Database, Cloud } from 'lucide-react';
 import Link from 'next/link';
 import { Meteors } from '@/components/ui/meteors';
+import { resumeUrl } from '@/features/contact/data/resume';
 
 const systemNodes = [
   { id: 'user', label: 'USER', icon: null },
@@ -70,7 +70,8 @@ export default function Hero() {
               Frontend-focused Full Stack Product Engineer
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I turn complex SaaS and AI workflows into fast, intuitive and production-ready web experiences.
+              I turn complex SaaS and AI workflows into fast, intuitive and production-ready web
+              experiences.
             </p>
           </motion.div>
 
@@ -88,7 +89,7 @@ export default function Hero() {
               Explore My Work
             </button>
             <Link
-              href="https://docs.google.com/document/d/123S0y3jKENNQMnQz_RROW853e8SCmQ5-/edit?usp=sharing&ouid=116905612445915389938&rtpof=true&sd=true"
+              href={resumeUrl}
               target="_blank"
               className="px-8 py-4 border border-border bg-card rounded-lg font-semibold 
                        hover:border-accent hover:text-accent transition-all duration-300 w-full sm:w-auto text-center"
@@ -113,40 +114,89 @@ export default function Hero() {
 
         {/* Right Content - System Architecture Visual */}
         <div className="hidden lg:flex flex-col items-center justify-center relative">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="relative w-full max-w-sm flex flex-col items-center gap-6 p-8 rounded-2xl border border-border/50 bg-card/30 backdrop-blur-sm"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="relative w-full max-w-sm flex flex-col items-center gap-5 p-8 rounded-2xl border border-border/50 bg-card/30 backdrop-blur-sm shadow-2xl"
           >
             {systemNodes.map((node, index) => {
               const Icon = node.icon;
+              const stepDelay = 0.45 + index * 0.18;
+              const isFirst = index === 0;
+
               return (
                 <div key={node.id} className="flex flex-col items-center w-full relative">
+                  {/* Step Node */}
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className={`w-full py-3 px-6 rounded-lg border flex items-center justify-center gap-3 bg-background z-10 transition-colors
-                      ${index === 0 ? 'border-transparent bg-transparent text-muted-foreground' : 'border-border hover:border-accent shadow-lg'}`}
+                    initial={{ opacity: 0, y: 16, scale: 0.92 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                    }}
+                    transition={{
+                      duration: 0.45,
+                      delay: stepDelay,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    className={`w-full py-3 px-6 rounded-lg border flex items-center justify-center gap-3 bg-background/90 z-10 transition-all duration-200 cursor-default
+                      ${
+                        isFirst
+                          ? 'border-transparent bg-transparent text-muted-foreground'
+                          : 'border-border/80 hover:border-accent hover:shadow-[0_0_15px_rgba(168,85,247,0.25)] shadow-md'
+                      }`}
                   >
-                    {Icon && <Icon className={`w-5 h-5 ${index === 0 ? '' : 'text-accent'}`} />}
-                    <span className="font-mono font-bold tracking-widest">{node.label}</span>
+                    {Icon && (
+                      <motion.div
+                        initial={{ scale: 0, rotate: -20 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{
+                          duration: 0.4,
+                          delay: stepDelay + 0.1,
+                          type: 'spring',
+                          stiffness: 260,
+                        }}
+                      >
+                        <Icon className="w-5 h-5 text-accent" />
+                      </motion.div>
+                    )}
+                    <span className="font-mono font-bold tracking-widest text-sm">
+                      {node.label}
+                    </span>
                   </motion.div>
-                  
-                  {/* Connector Line */}
+
+                  {/* Step Connector Line */}
                   {index < systemNodes.length - 1 && (
-                    <div className="flex flex-col items-center h-6 w-[1px] bg-gradient-to-b from-border to-accent/50 relative">
-                      <motion.div 
-                        animate={{ 
+                    <div className="flex flex-col items-center h-6 w-[1px] relative">
+                      {/* Growing connector track */}
+                      <motion.div
+                        initial={{ scaleY: 0, opacity: 0 }}
+                        animate={{ scaleY: 1, opacity: 1 }}
+                        transition={{
+                          duration: 0.3,
+                          delay: stepDelay + 0.12,
+                          ease: 'easeOut',
+                        }}
+                        style={{ transformOrigin: 'top' }}
+                        className="w-full h-full bg-gradient-to-b from-border to-accent/60"
+                      />
+
+                      {/* Continuous Signal Packet Animation */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{
                           y: [0, 24],
-                          opacity: [0, 1, 0]
+                          opacity: [0, 1, 0],
                         }}
-                        transition={{ 
-                          duration: 2,
+                        transition={{
+                          duration: 1.8,
                           repeat: Infinity,
-                          delay: index * 0.4,
-                          ease: "linear"
+                          delay: stepDelay + 0.4,
+                          ease: 'linear',
                         }}
-                        className="absolute top-0 left-[-2px] w-[5px] h-[5px] rounded-full bg-accent"
+                        className="absolute top-0 left-[-2px] w-[5px] h-[5px] rounded-full bg-accent shadow-[0_0_8px_rgba(168,85,247,0.8)]"
                       />
                     </div>
                   )}

@@ -1,7 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, Download, Mail, Phone, MapPin, ExternalLink, Github, Linkedin } from 'lucide-react';
+import {
+  ArrowLeft,
+  Download,
+  Mail,
+  Phone,
+  MapPin,
+  ExternalLink,
+  Github,
+  Linkedin,
+} from 'lucide-react';
 import { resumeData } from '@/features/contact/data/resume';
 
 export default function ResumePage() {
@@ -46,11 +55,17 @@ export default function ResumePage() {
 
               {/* Contact Info */}
               <div className="flex flex-wrap gap-4 text-sm text-muted-foreground print:text-gray-600">
-                <a href={`mailto:${resumeData.personalInfo.email}`} className="flex items-center gap-2 hover:text-primary print:hover:text-gray-900">
+                <a
+                  href={`mailto:${resumeData.personalInfo.email}`}
+                  className="flex items-center gap-2 hover:text-primary print:hover:text-gray-900"
+                >
                   <Mail className="w-4 h-4" />
                   {resumeData.personalInfo.email}
                 </a>
-                <a href={`tel:${resumeData.personalInfo.phone}`} className="flex items-center gap-2 hover:text-primary print:hover:text-gray-900">
+                <a
+                  href={`tel:${resumeData.personalInfo.phone}`}
+                  className="flex items-center gap-2 hover:text-primary print:hover:text-gray-900"
+                >
                   <Phone className="w-4 h-4" />
                   {resumeData.personalInfo.phone}
                 </a>
@@ -58,11 +73,21 @@ export default function ResumePage() {
                   <MapPin className="w-4 h-4" />
                   {resumeData.personalInfo.location}
                 </span>
-                <a href={resumeData.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary print:hover:text-gray-900">
+                <a
+                  href={resumeData.personalInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-primary print:hover:text-gray-900"
+                >
                   <Linkedin className="w-4 h-4" />
                   LinkedIn
                 </a>
-                <a href={resumeData.personalInfo.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary print:hover:text-gray-900">
+                <a
+                  href={resumeData.personalInfo.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-primary print:hover:text-gray-900"
+                >
                   <Github className="w-4 h-4" />
                   GitHub
                 </a>

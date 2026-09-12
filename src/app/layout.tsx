@@ -66,14 +66,13 @@ export const metadata: Metadata = {
     shortcut: '/favicon.svg',
     apple: '/favicon.svg',
   },
-
 };
-
 
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { SmoothCursor } from '@/components/ui/smooth-cursor';
 import { Particles } from '@/components/ui/particles';
+import FloatingActions from '@/components/shared/FloatingActions';
 
 export default function RootLayout({
   children,
@@ -81,15 +80,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} ${sora.variable} antialiased relative`}>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable} ${sora.variable} antialiased relative`}
+      >
         <div className="print:hidden">
           <SmoothCursor />
           <Particles
             className="fixed inset-0 -z-10"
-            quantity={50}
+            quantity={70}
             ease={80}
-            color="#ffffff"
+            color="#ffffffff"
             refresh
           />
         </div>
@@ -106,11 +107,10 @@ export default function RootLayout({
           />
           <div className="min-h-screen bg-background/50 flex flex-col relative z-0">
             <Navbar />
-            <main className="flex-1">
-              {children}
-            </main>
+            <main className="flex-1">{children}</main>
             <Footer />
           </div>
+          <FloatingActions />
         </TooltipProvider>
       </body>
     </html>

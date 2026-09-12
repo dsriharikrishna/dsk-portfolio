@@ -4,14 +4,16 @@ import { skillCategories } from '@/features/skills/data/skills';
 import { Marquee } from '@/components/ui/marquee';
 import { Highlighter } from '@/components/ui/highlighter';
 import { TextReveal } from '@/components/ui/text-reveal';
-import { cn } from '@/lib/utils';
 import SectionHeader from '@/components/shared/SectionHeader';
+import { TechIcon } from './TechIcon';
 
 export default function Skills() {
-  // We'll flatten some skills to create continuous marquee rows
-  const frontendSkills = skillCategories.find(c => c.title === 'Frontend')?.skills || [];
-  const backendSkills = skillCategories.find(c => c.title === 'Backend')?.skills || [];
-  const toolsSkills = skillCategories.find(c => c.title === 'Tools & Others')?.skills || [];
+  // Flatten skills for continuous marquee rows
+  const frontendSkills = skillCategories.find((c) => c.title.includes('Frontend'))?.skills || [];
+  const backendSkills = skillCategories.find((c) => c.title.includes('Backend'))?.skills || [];
+  const toolsSkills =
+    skillCategories.find((c) => c.title.includes('Tools') || c.title.includes('DevOps'))?.skills ||
+    [];
 
   return (
     <section id="skills" className="relative bg-secondary/20 flex flex-col pb-16 md:pb-20">
@@ -30,16 +32,23 @@ export default function Skills() {
 
         {/* Marquee Rows */}
         <div className="relative flex flex-col items-center justify-center overflow-hidden w-full gap-8">
-          
           {/* Frontend Row - Scrolling Left */}
           {frontendSkills.length > 0 && (
             <div className="w-full">
-              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-widest pl-8 mb-4">Frontend</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-widest pl-8 mb-4">
+                Frontend
+              </h3>
               <Marquee pauseOnHover className="[--duration:40s]">
                 {frontendSkills.map((skill, idx) => (
-                  <Highlighter key={idx} padding={6} color="hsl(var(--primary) / 0.2)" animationDuration={400}>
-                    <div className="flex items-center justify-center px-6 py-3 rounded-full border border-border/50 bg-background/50 backdrop-blur-sm text-foreground font-medium text-lg cursor-pointer hover:border-primary/50 transition-colors">
-                      {skill}
+                  <Highlighter
+                    key={idx}
+                    padding={6}
+                    color="hsl(var(--primary) / 0.2)"
+                    animationDuration={400}
+                  >
+                    <div className="flex items-center justify-center gap-2.5 px-6 py-3 rounded-full border border-border/50 bg-background/50 backdrop-blur-sm text-foreground font-medium text-base md:text-lg cursor-pointer hover:border-primary/50 transition-colors">
+                      <TechIcon name={skill} className="w-5 h-5 shrink-0" />
+                      <span>{skill}</span>
                     </div>
                   </Highlighter>
                 ))}
@@ -50,12 +59,20 @@ export default function Skills() {
           {/* Backend Row - Scrolling Right (Reverse) */}
           {backendSkills.length > 0 && (
             <div className="w-full">
-              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-widest pl-8 mb-4 text-right pr-8">Backend</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-widest pl-8 mb-4 text-right pr-8">
+                Backend
+              </h3>
               <Marquee reverse pauseOnHover className="[--duration:45s]">
                 {backendSkills.map((skill, idx) => (
-                  <Highlighter key={idx} padding={6} color="hsl(var(--accent) / 0.2)" animationDuration={400}>
-                    <div className="flex items-center justify-center px-6 py-3 rounded-full border border-border/50 bg-background/50 backdrop-blur-sm text-foreground font-medium text-lg cursor-pointer hover:border-accent/50 transition-colors">
-                      {skill}
+                  <Highlighter
+                    key={idx}
+                    padding={6}
+                    color="hsl(var(--accent) / 0.2)"
+                    animationDuration={400}
+                  >
+                    <div className="flex items-center justify-center gap-2.5 px-6 py-3 rounded-full border border-border/50 bg-background/50 backdrop-blur-sm text-foreground font-medium text-base md:text-lg cursor-pointer hover:border-accent/50 transition-colors">
+                      <TechIcon name={skill} className="w-5 h-5 shrink-0" />
+                      <span>{skill}</span>
                     </div>
                   </Highlighter>
                 ))}
@@ -66,12 +83,20 @@ export default function Skills() {
           {/* Tools Row - Scrolling Left */}
           {toolsSkills.length > 0 && (
             <div className="w-full">
-              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-widest pl-8 mb-4">Tools & Ecosystem</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-widest pl-8 mb-4">
+                Tools & Ecosystem
+              </h3>
               <Marquee pauseOnHover className="[--duration:50s]">
                 {toolsSkills.map((skill, idx) => (
-                  <Highlighter key={idx} padding={6} color="hsl(var(--primary) / 0.2)" animationDuration={400}>
-                    <div className="flex items-center justify-center px-6 py-3 rounded-full border border-border/50 bg-background/50 backdrop-blur-sm text-foreground font-medium text-lg cursor-pointer hover:border-primary/50 transition-colors">
-                      {skill}
+                  <Highlighter
+                    key={idx}
+                    padding={6}
+                    color="hsl(var(--primary) / 0.2)"
+                    animationDuration={400}
+                  >
+                    <div className="flex items-center justify-center gap-2.5 px-6 py-3 rounded-full border border-border/50 bg-background/50 backdrop-blur-sm text-foreground font-medium text-base md:text-lg cursor-pointer hover:border-primary/50 transition-colors">
+                      <TechIcon name={skill} className="w-5 h-5 shrink-0" />
+                      <span>{skill}</span>
                     </div>
                   </Highlighter>
                 ))}

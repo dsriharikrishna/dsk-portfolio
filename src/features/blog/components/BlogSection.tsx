@@ -6,7 +6,14 @@ import Link from 'next/link';
 import SectionHeader from '@/components/shared/SectionHeader';
 
 const blogTopics = [
-  'React', 'Next.js', 'TypeScript', 'Architecture', 'Performance', 'Docker', 'AWS', 'AI Products'
+  'React',
+  'Next.js',
+  'TypeScript',
+  'Architecture',
+  'Performance',
+  'Docker',
+  'AWS',
+  'AI Products',
 ];
 
 export default function BlogSection() {
@@ -16,7 +23,7 @@ export default function BlogSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           className="w-full"
         >
           <SectionHeader
@@ -34,7 +41,7 @@ export default function BlogSection() {
               key={topic}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: '-100px' }}
               transition={{ delay: index * 0.05 }}
               className="px-4 py-2 rounded-full border border-border bg-card text-sm font-medium text-foreground hover:border-accent hover:text-accent transition-colors cursor-default"
             >

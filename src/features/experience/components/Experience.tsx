@@ -7,12 +7,15 @@ import SectionHeader from '@/components/shared/SectionHeader';
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-8 md:py-12 relative bg-secondary/20 border-t border-border/50">
+    <section
+      id="experience"
+      className="py-8 md:py-12 relative bg-secondary/20 border-t border-border/50"
+    >
       <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           className="w-full"
         >
           <SectionHeader
@@ -30,14 +33,16 @@ export default function Experience() {
             const numberString = (index + 1).toString().padStart(2, '0');
 
             return (
-              <div key={index} className="relative flex items-center justify-between md:justify-center md:odd:flex-row-reverse group is-active w-full">
-
+              <div
+                key={index}
+                className="relative flex items-center justify-between md:justify-center md:odd:flex-row-reverse group is-active w-full"
+              >
                 {/* Content Side */}
                 <div className="w-[calc(100%-4rem)] md:w-auto md:flex-1 flex md:justify-end md:group-odd:justify-start md:px-8">
                   <motion.div
                     initial={{ opacity: 0, x: isEven ? 20 : -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true, margin: '-100px' }}
                     className="w-full bg-card border border-border p-8 rounded-2xl shadow-xl hover:border-accent/50 transition-colors flex flex-col gap-6"
                   >
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -45,7 +50,9 @@ export default function Experience() {
                         <h4 className="text-2xl font-black">{exp.company}</h4>
                         <p className="text-muted-foreground font-medium">{exp.title}</p>
                       </div>
-                      <span className="font-mono text-xs text-muted-foreground bg-secondary px-3 py-1 rounded-full w-fit">{exp.period}</span>
+                      <span className="font-mono text-xs text-muted-foreground bg-secondary px-3 py-1 rounded-full w-fit">
+                        {exp.period}
+                      </span>
                     </div>
 
                     <div className="flex flex-col gap-3 mt-2">
@@ -62,9 +69,11 @@ export default function Experience() {
                 </div>
 
                 {/* Icon */}
-                <div className={`flex items-center justify-center w-10 h-10 rounded-full border border-border shadow shrink-0 z-10 font-bold font-mono text-xs
+                <div
+                  className={`flex items-center justify-center w-10 h-10 rounded-full border border-border shadow shrink-0 z-10 font-bold font-mono text-xs
                   ${index === 0 ? 'bg-background text-accent border-accent/30' : 'bg-card text-muted-foreground'}
-                `}>
+                `}
+                >
                   {numberString}
                 </div>
 

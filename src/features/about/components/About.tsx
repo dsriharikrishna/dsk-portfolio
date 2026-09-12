@@ -7,12 +7,15 @@ import SectionHeader from '@/components/shared/SectionHeader';
 
 export default function About() {
   return (
-    <section id="about" className="pt-20 pb-16 lg:pt-32 lg:pb-20relative border-t border-border/50">
+    <section
+      id="about"
+      className="pt-20 pb-16 lg:pt-32 lg:pb-20 relative border-t border-border/50"
+    >
       <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           className="w-full"
         >
           <SectionHeader
@@ -32,7 +35,7 @@ export default function About() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: '-100px' }}
                 transition={{ delay: 0.1 * (index + 1) }}
               >
                 {paragraph}
@@ -45,8 +48,8 @@ export default function About() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95, rotate: -2 }}
               whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, type: "spring" }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.8, type: 'spring' }}
               className="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-border/50 bg-card/30"
             >
               <Image

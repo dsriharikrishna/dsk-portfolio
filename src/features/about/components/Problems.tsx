@@ -29,8 +29,17 @@ const problems = [
   {
     number: '05',
     title: 'Production',
-    question: 'How do you take an application from a developer machine to a reliable production environment?',
-    tools: ['Docker', 'Nginx', 'GitHub Actions', 'AWS', 'Environment variables', 'Health checks', 'Logs'],
+    question:
+      'How do you take an application from a developer machine to a reliable production environment?',
+    tools: [
+      'Docker',
+      'Nginx',
+      'GitHub Actions',
+      'AWS',
+      'Environment variables',
+      'Health checks',
+      'Logs',
+    ],
   },
 ];
 
@@ -38,12 +47,15 @@ import SectionHeader from '@/components/shared/SectionHeader';
 
 export default function Problems() {
   return (
-    <section id="problems" className="py-8 md:py-12 relative bg-secondary/20 border-t border-border/50 overflow-hidden">
+    <section
+      id="problems"
+      className="py-8 md:py-12 relative bg-secondary/20 border-t border-border/50 overflow-hidden"
+    >
       <div className="container mx-auto px-6 relative z-10 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           className="w-full"
         >
           <SectionHeader
@@ -61,10 +73,11 @@ export default function Problems() {
               key={problem.number}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`p-8 rounded-2xl border border-border bg-card relative group hover:border-accent transition-colors flex flex-col gap-6 ${index === problems.length - 1 ? 'md:col-span-2 lg:col-span-1' : ''
-                }`}
+              className={`p-8 rounded-2xl border border-border bg-card relative group hover:border-accent transition-colors flex flex-col gap-6 ${
+                index === problems.length - 1 ? 'md:col-span-2 lg:col-span-1' : ''
+              }`}
             >
               <div className="absolute top-8 right-8 font-mono text-3xl font-black text-muted/20 group-hover:text-accent/20 transition-colors">
                 {problem.number}
@@ -80,17 +93,24 @@ export default function Problems() {
 
               {problem.example && (
                 <div className="flex flex-col gap-2">
-                  <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground">Example</div>
+                  <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
+                    Example
+                  </div>
                   <p className="text-foreground/90 font-medium">{problem.example}</p>
                 </div>
               )}
 
               {problem.tools && (
                 <div className="flex flex-col gap-3">
-                  <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground">Tools / Stack</div>
+                  <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
+                    Tools / Stack
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {problem.tools.map((tool) => (
-                      <span key={tool} className="px-3 py-1 bg-secondary rounded-md text-sm text-foreground/80 font-medium border border-border/50">
+                      <span
+                        key={tool}
+                        className="px-3 py-1 bg-secondary rounded-md text-sm text-foreground/80 font-medium border border-border/50"
+                      >
                         {tool}
                       </span>
                     ))}

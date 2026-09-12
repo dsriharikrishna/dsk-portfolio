@@ -53,7 +53,11 @@ export default function Certifications() {
   };
 
   return (
-    <section ref={sectionRef} id="certifications" className="py-8 md:py-12 relative border-t border-border/50">
+    <section
+      ref={sectionRef}
+      id="certifications"
+      className="py-8 md:py-12 relative border-t border-border/50"
+    >
       <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <div className="w-full">
           <SectionHeader
@@ -69,7 +73,10 @@ export default function Certifications() {
           {certifications.map((cert, index) => {
             const Icon = iconMap[cert.icon as keyof typeof iconMap] || Code2;
             return (
-              <GlassCard key={index} className="cert-card p-8 group hover:border-primary/30 transition-all duration-300 flex flex-col gap-6">
+              <GlassCard
+                key={index}
+                className="cert-card p-8 group hover:border-primary/30 transition-all duration-300 flex flex-col gap-6"
+              >
                 {/* Icon and Category */}
                 <div className="flex items-start justify-between">
                   <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">

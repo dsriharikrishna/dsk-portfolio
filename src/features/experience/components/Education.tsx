@@ -57,7 +57,11 @@ export default function Education() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="education" className="py-8 md:py-12 relative border-t border-border/50">
+    <section
+      ref={sectionRef}
+      id="education"
+      className="py-8 md:py-12 relative border-t border-border/50"
+    >
       <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         {/* Section Header */}
         <div className="edu-header w-full">
@@ -75,7 +79,10 @@ export default function Education() {
           {education.map((edu, index) => {
             const Icon = iconMap[index as keyof typeof iconMap];
             return (
-              <GlassCard key={index} className="edu-card p-8 group hover:border-accent/50 transition-colors flex flex-col gap-6 items-center text-center">
+              <GlassCard
+                key={index}
+                className="edu-card p-8 group hover:border-accent/50 transition-colors flex flex-col gap-6 items-center text-center"
+              >
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
                   <Icon className="w-8 h-8" />
                 </div>
@@ -86,11 +93,15 @@ export default function Education() {
                 </div>
 
                 <div className="inline-block px-3 py-1 bg-secondary rounded-lg">
-                  <span className="text-muted-foreground text-xs font-mono tracking-widest uppercase">{edu.period}</span>
+                  <span className="text-muted-foreground text-xs font-mono tracking-widest uppercase">
+                    {edu.period}
+                  </span>
                 </div>
 
                 {edu.description && (
-                  <p className="text-muted-foreground text-sm leading-relaxed mt-auto pt-4 border-t border-border/50 w-full">{edu.description}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed mt-auto pt-4 border-t border-border/50 w-full">
+                    {edu.description}
+                  </p>
                 )}
               </GlassCard>
             );

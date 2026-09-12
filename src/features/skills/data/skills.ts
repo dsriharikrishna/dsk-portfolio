@@ -27,13 +27,7 @@ export const skillCategories: SkillCategory[] = [
 
   {
     title: 'Forms & Validation',
-    skills: [
-      'React Hook Form',
-      'Zod',
-      'Form Architecture',
-      'Schema Validation',
-      'API Validation',
-    ],
+    skills: ['React Hook Form', 'Zod', 'Form Architecture', 'Schema Validation', 'API Validation'],
   },
 
   {
@@ -67,15 +61,7 @@ export const skillCategories: SkillCategory[] = [
 
   {
     title: 'Databases & ORM',
-    skills: [
-      'PostgreSQL',
-      'MySQL',
-      'MongoDB',
-      'Prisma',
-      'SQL',
-      'Alembic',
-      'Database Design',
-    ],
+    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Prisma', 'SQL', 'Alembic', 'Database Design'],
   },
 
   {

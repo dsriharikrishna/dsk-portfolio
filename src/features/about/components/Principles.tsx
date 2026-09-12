@@ -6,27 +6,32 @@ import { Layers, ShieldAlert, Zap, Box, CheckCircle2 } from 'lucide-react';
 const principles = [
   {
     title: 'Keep complexity where it belongs.',
-    description: "Don't push backend complexity into the UI. Keep components focused on presentation and user interaction.",
+    description:
+      "Don't push backend complexity into the UI. Keep components focused on presentation and user interaction.",
     icon: Box,
   },
   {
     title: 'Separate state responsibilities.',
-    description: 'Client state ≠ server state. Global stores should not hold API cache, and API cache should not manage UI toggles.',
+    description:
+      'Client state ≠ server state. Global stores should not hold API cache, and API cache should not manage UI toggles.',
     icon: Layers,
   },
   {
     title: 'Build for failure.',
-    description: 'Loading, empty, and error states are part of the product. An application is only as good as how it handles when things break.',
+    description:
+      'Loading, empty, and error states are part of the product. An application is only as good as how it handles when things break.',
     icon: ShieldAlert,
   },
   {
     title: 'Optimize intentionally.',
-    description: 'Measure first. Optimize second. Premature optimization introduces technical debt without measurable user benefit.',
+    description:
+      'Measure first. Optimize second. Premature optimization introduces technical debt without measurable user benefit.',
     icon: Zap,
   },
   {
     title: 'Ship the complete feature.',
-    description: 'UI → API → Validation → Testing → Deployment. A feature is not done when it looks good on localhost.',
+    description:
+      'UI → API → Validation → Testing → Deployment. A feature is not done when it looks good on localhost.',
     icon: CheckCircle2,
   },
 ];
@@ -40,7 +45,7 @@ export default function Principles() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           className="w-full"
         >
           <SectionHeader
@@ -60,7 +65,7 @@ export default function Principles() {
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className={`flex gap-6 ${index === principles.length - 1 ? 'md:col-span-2 md:w-1/2 md:mx-auto' : ''}`}
               >
@@ -71,9 +76,7 @@ export default function Principles() {
                 </div>
                 <div className="flex flex-col gap-3">
                   <h4 className="text-xl font-bold">{principle.title}</h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {principle.description}
-                  </p>
+                  <p className="text-muted-foreground leading-relaxed">{principle.description}</p>
                 </div>
               </motion.div>
             );

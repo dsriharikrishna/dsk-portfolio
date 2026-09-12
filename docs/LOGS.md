@@ -8,11 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## 📌 Quick Summary of Milestones
 
-| Release / Phase | Timeframe | Highlights |
-|---|---|---|
-| **v1.2.1** | September 2026 | Headline & typography standardization across all 14 UI sections via unified `SectionHeader`, and consolidation of documentation into `docs/`. |
-| **v1.2.0** | September 2026 | Feature-based architecture migration, Next.js 16 & React 19 upgrade, Framer Motion animations, Magic UI components (particles, pointer, meteors, smooth cursor), interactive StackMap, dedicated recruiter & engineer routes. |
-| **v1.0.0** | February 2026 | Initial portfolio launch with Next.js App Router, Tailwind CSS, Lucide icons, Resend email service, Dev.to integration, and Netlify deployment configuration. |
+| Release / Phase | Timeframe      | Highlights                                                                                                                                                                                                                    |
+| --------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **v1.2.1**      | September 2026 | Headline & typography standardization across all 14 UI sections via unified `SectionHeader`, and consolidation of documentation into `docs/`.                                                                                 |
+| **v1.2.0**      | September 2026 | Feature-based architecture migration, Next.js 16 & React 19 upgrade, Framer Motion animations, Magic UI components (particles, pointer, meteors, smooth cursor), interactive StackMap, dedicated recruiter & engineer routes. |
+| **v1.0.0**      | February 2026  | Initial portfolio launch with Next.js App Router, Tailwind CSS, Lucide icons, Resend email service, Dev.to integration, and Netlify deployment configuration.                                                                 |
 
 ---
 
@@ -21,39 +21,91 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ### 🚀 Phase 2: Feature-Based Architecture & Interactive UI Overhaul (September 2026)
 
 #### [Work in Progress / Working Tree] - 2026-09-12
-- **Type**: `style` / `refactor`
-- **Subject**: `refactor: unify section headline typography and consolidate documentation into docs/`
+
+- **Type**: `feat` / `refactor`
+- **Subject**: `feat(skills): add authentic brand logos for tech stack & Hero animations`
 - **Description**:
-  - Standardized [`SectionHeader`](file:///c:/PROJECTS/dsk-portfolio/src/components/shared/SectionHeader.tsx) strictly to **`center`** alignment across the entire portfolio for total visual symmetry, featuring consistent tag typography, gradient accent highlights, and centered subtitles.
-  - Applied the unified centered `SectionHeader` hierarchy across all 15 components: `Journey`, `About`, `Problems`, `Principles`, `EngineeringLab`, `StackMap`, `Experience`, `Projects`, `Skills`, `GithubSection`, `BlogSection`, `ResumeSection`, `Contact`, `Education`, `Certifications`, and `/blog` page.
-  - Eliminated excessive vertical paddings, margins, and gaps across all sections (reducing `py-32`/`py-24` down to compact, punchy `py-16 md:py-20`, `mb-16` down to `mb-6 md:mb-8`, and container `gap-20`/`gap-16` down to `gap-8 md:gap-10`).
-  - Upgraded [`Hero`](file:///c:/PROJECTS/dsk-portfolio/src/components/sections/Hero.tsx) `<h1>` with responsive fluid typography (`text-4xl sm:text-5xl md:text-6xl`).
-  - Consolidated all markdown documentation (`GEMINI.md`, `LOGS.md`, `CHANGELOG.md`, `DEVTO_ARTICLE.md`) into a single [`docs/`](file:///c:/PROJECTS/dsk-portfolio/docs) folder.
+  - **Skill Brand Logos with Dynamic Animations (`TechIcon.tsx`)**:
+    - Created a comprehensive, animated SVG brand logo component [`TechIcon.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/features/skills/components/TechIcon.tsx) providing authentic brand logos for 24+ technologies across the stack.
+    - Added custom ambient micro-animations:
+      - **React**: continuous smooth orbital ring rotation (360° electron loop).
+      - **Magic UI**: dynamic sparkle scale and rotate pulse.
+      - **FastAPI**: glowing lightning bolt energy pulse.
+      - **Docker & Tailwind**: subtle continuous wave motion.
+      - **Next.js**: smooth path trace breathing.
+      - **Interactive Hover**: smooth elastic rotation and scale (`whileHover={{ scale: 1.22, rotate: [0, -8, 8, 0] }}` with `easeInOut` multi-keyframe transition).
+    - Integrated staggered scroll entrance animations and hover nudge effects into the 6-column categorized list in [`StackMap.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/features/skills/components/StackMap.tsx).
+    - Integrated brand logos into the active node detail inspector in [`StackMap.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/features/skills/components/StackMap.tsx).
+    - Integrated brand logos into the animated marquee pills in [`Skills.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/features/skills/components/Skills.tsx).
+  - **Console Diagnostics & Smooth Scroll Cleanups**:
+    - Resolved Framer Motion spring multi-keyframe error in [`TechIcon.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/features/skills/components/TechIcon.tsx).
+    - Removed undefined `strokeWidth` animation in [`SmoothCursor.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/ui/smooth-cursor.tsx), setting clean static `strokeWidth={1.5}`.
+    - Added `data-scroll-behavior="smooth"` to `<html>` in [`layout.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/app/layout.tsx) per Next.js route transition guidelines.
+  - **Hero Right-Side Architecture Stack Animations**:
+    - Implemented a step-by-step staggered cascade in [`Hero.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/sections/Hero.tsx) for the right-hand system architecture card (`USER` -> `UI` -> `LOGIC` -> `API` -> `DATA` -> `CLOUD`).
+    - Added sequential node entrance springs, vertical connector line growth animations, and continuous glowing purple data pulse signals traveling down the pipeline.
+  - **Centralized Resume Link to Data Folder**:
+    - Extracted the inline Google Doc resume link into [`src/features/contact/data/resume.ts`](file:///c:/PROJECTS/dsk-portfolio/src/features/contact/data/resume.ts) (`resumeUrl` export and inside `resumeData`).
+    - Refactored both [`Hero.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/sections/Hero.tsx) and [`ResumeSection.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/features/contact/components/ResumeSection.tsx) to import `resumeUrl` from `@/features/contact/data/resume`, eliminating duplicate hardcoded inline URLs.
+  - **Dynamic Precision Arrow Pointer**:
+    - Implemented the user-selected **Precision Arrow Pointer** in [`SmoothCursor`](file:///c:/PROJECTS/dsk-portfolio/src/components/ui/smooth-cursor.tsx) with aerodynamic motion tilt (`-12deg` to `+12deg`), interactive clickable hover scale/glow/pulse, click ripples, and precision text I-beam mode.
+  - **Global Desktop Cursor Styling**:
+    - Added desktop fine-pointer CSS rule in [`globals.css`](file:///c:/PROJECTS/dsk-portfolio/src/app/globals.css) via `.has-custom-cursor` to hide default OS pointers on desktop without interfering with mobile/touch interactions.
+  - **Documentation & Section Standardization**:
+    - Standardized [`SectionHeader`](file:///c:/PROJECTS/dsk-portfolio/src/components/shared/SectionHeader.tsx) to strictly **`center`** alignment across the entire portfolio.
+    - Consolidated documentation into [`docs/`](file:///c:/PROJECTS/dsk-portfolio/docs).
+  - **Bottom Floating Action Icons (`FloatingActions.tsx`)**:
+    - Designed and implemented a glassmorphic floating action dock in [`FloatingActions.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/shared/FloatingActions.tsx) anchored at the bottom-right (`bottom-5 right-5 md:bottom-6 md:right-6`):
+      1. **Resume Download Button**:
+         - Circular glassmorphic action button (`w-12 h-12`) with `FileDown` icon and hover tooltip _"Download Resume"_.
+         - Direct link to `resumeUrl` imported from [`@/features/contact/data/resume`](file:///c:/PROJECTS/dsk-portfolio/src/features/contact/data/resume.ts) opening in a new tab.
+      2. **AI Portfolio Assistant Bot (Trained on Portfolio Data)**:
+         - Created [`src/services/botKnowledge.ts`](file:///c:/PROJECTS/dsk-portfolio/src/services/botKnowledge.ts) which trains the bot and dynamically sources questions and answers from all portfolio `data/` modules:
+           - [`src/features/skills/data/skills.ts`](file:///c:/PROJECTS/dsk-portfolio/src/features/skills/data/skills.ts) (Frontend, Backend, Databases, UI Engineering, DevOps).
+           - [`src/features/projects/data/projects.ts`](file:///c:/PROJECTS/dsk-portfolio/src/features/projects/data/projects.ts) (Flagship projects ORKA.AI, Orkemy, and enterprise platforms).
+           - [`src/features/experience/data/experience.ts`](file:///c:/PROJECTS/dsk-portfolio/src/features/experience/data/experience.ts) (Current role at Signitives, previous internships).
+           - [`src/features/experience/data/education.ts`](file:///c:/PROJECTS/dsk-portfolio/src/features/experience/data/education.ts) & [`certifications.ts`](file:///c:/PROJECTS/dsk-portfolio/src/features/experience/data/certifications.ts) (B.Tech degree, Java Full Stack, HackerRank).
+           - [`src/features/contact/data/contact.ts`](file:///c:/PROJECTS/dsk-portfolio/src/features/contact/data/contact.ts) & [`resume.ts`](file:///c:/PROJECTS/dsk-portfolio/src/features/contact/data/resume.ts) (Hyderabad location, email, phone, LinkedIn, verified resume URL).
+         - Features interactive categorized prompt filters (`All`, `Stack`, `Projects`, `Experience`, `About`, `Contact`).
+         - Added intelligent fuzzy query parser (`findBestBotAnswer`) with interactive text typing prompt and chat reset.
+         - **Realistic Streaming Interaction**: Built character-by-character token streaming (18ms intervals) and authentic cognitive delay (550-850ms) to give the feel of a live responding AI model.
+         - **Thought & Reasoning Trace**: Animated `Cpu` thought indicator (`activeThought`) displayed while the assistant reasons before streaming each response.
+         - **Intelligent Out-of-Scope Handling & Smart Redirection**:
+           - When users ask questions outside the portfolio scope (e.g. general trivia, weather, calculations), the assistant explains its persona as Srihari's portfolio assistant.
+         - **Hardened Edge Case & Safety Handling**:
+           - Cleaned and sanitized user inputs (stripped control characters, collapsed spaces, normalized punctuation).
+           - Blocked spam and character mashing (e.g. `asdfasdf`, `aaaaaaa`) with polite guidance.
+           - Intercepted adversarial system prompts and exploit attempts (`jailbreak`, `password`, `bypass`).
+           - Added courtesies and farewell handling (`thanks`, `bye`, `see you`).
+           - Added exact word-boundary matching for short technical acronyms (`AWS`, `SQL`, `CSS`, `Git`).
+           - Resolved timer race conditions with synchronized cleanup of streaming intervals and thinking timeouts.
+           - Added input autofocus on modal open.
+         - Embedded direct section deep links (`#skills`, `#projects`, `#experience`, `#contact`) and resume links in answers.
+         - Configured with `print:hidden` to ensure pristine printed resume exports.
+    - Mounted `<FloatingActions />` in [`layout.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/app/layout.tsx) inside `<TooltipProvider>` for seamless portfolio-wide availability.
+  - **Universal Thin & Small Scrollbar (`globals.css`)**:
+    - Configured a minimalist 6px thin scrollbar universally across the entire application:
+      - Standard CSS `scrollbar-width: thin` and `scrollbar-color` on `html` and `*` for Firefox.
+      - WebKit pseudo-elements (`::-webkit-scrollbar` with `6px` width and height, transparent track, pill-rounded thumb, and accent hover/active glow).
 - **Changed Files**:
-  - `src/components/shared/SectionHeader.tsx`
-  - `src/components/sections/Hero.tsx`
-  - `src/components/layout/Footer.tsx`
-  - `src/app/recruiter/page.tsx`
-  - `src/app/blog/page.tsx`
-  - `src/features/about/components/Journey.tsx`
-  - `src/features/about/components/About.tsx`
-  - `src/features/about/components/Problems.tsx`
-  - `src/features/about/components/Principles.tsx`
-  - `src/features/projects/components/EngineeringLab.tsx`
-  - `src/features/projects/components/Projects.tsx`
+  - `src/app/globals.css`
+  - `src/services/botKnowledge.ts`
+  - `src/components/shared/FloatingActions.tsx`
+  - `src/app/layout.tsx`
+  - `src/features/skills/components/TechIcon.tsx`
   - `src/features/skills/components/StackMap.tsx`
   - `src/features/skills/components/Skills.tsx`
-  - `src/features/experience/components/Experience.tsx`
-  - `src/features/experience/components/Education.tsx`
-  - `src/features/experience/components/Certifications.tsx`
-  - `src/features/github/components/GithubSection.tsx`
-  - `src/features/blog/components/BlogSection.tsx`
+  - `src/components/sections/Hero.tsx`
+  - `src/features/contact/data/resume.ts`
   - `src/features/contact/components/ResumeSection.tsx`
-  - `src/features/contact/components/Contact.tsx`
+  - `src/components/ui/smooth-cursor.tsx`
+  - `src/app/globals.css`
+  - `docs/LOGS.md`
 
 ---
 
 #### [Commit `21a3f78`] - 2026-09-09
+
 - **Commit Hash**: `21a3f785af46519791616b3ef9177d8bbdfa2ba1`
 - **Short Hash**: `21a3f78`
 - **Author**: dsriharikrishna19 `<srihari.dasari@signitives.net>`
@@ -69,6 +121,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ---
 
 #### [Commit `d0583e6`] - 2026-09-09
+
 - **Commit Hash**: `d0583e62f5c7445b1d8b4c7244be9f53d502c29c`
 - **Short Hash**: `d0583e6`
 - **Author**: dsriharikrishna19 `<srihari.dasari@signitives.net>`
@@ -85,6 +138,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ---
 
 #### [Commit `db7503a`] - 2026-09-09
+
 - **Commit Hash**: `db7503a3fd35f0f16e38cfadac05708eb995c8ea`
 - **Short Hash**: `db7503a`
 - **Author**: dsriharikrishna19 `<srihari.dasari@signitives.net>`
@@ -99,6 +153,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ---
 
 #### [Commit `07980fe`] - 2026-09-09
+
 - **Commit Hash**: `07980fe61088aaa93c1c39b1af48f67abf8d5aee`
 - **Short Hash**: `07980fe`
 - **Author**: dsriharikrishna19 `<srihari.dasari@signitives.net>`
@@ -121,6 +176,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ---
 
 #### [Commit `fe5176f`] - 2026-09-08
+
 - **Commit Hash**: `fe5176f127db13054ab50613321fac7e473d3e01`
 - **Short Hash**: `fe5176f`
 - **Author**: dsriharikrishna19 `<srihari.dasari@signitives.net>`
@@ -135,6 +191,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ---
 
 #### [Commit `53bdb29`] - 2026-09-08
+
 - **Commit Hash**: `53bdb2973afb70f60b35eea0d46eb90c22bf38d5`
 - **Short Hash**: `53bdb29`
 - **Author**: dsriharikrishna19 `<srihari.dasari@signitives.net>`
@@ -158,6 +215,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ---
 
 #### [Commit `ee0587a`] - 2026-09-08
+
 - **Commit Hash**: `ee0587aee043fdedaed54d1466fe3e5bcd4fead0`
 - **Short Hash**: `ee0587a`
 - **Author**: dsriharikrishna19 `<srihari.dasari@signitives.net>`
@@ -192,6 +250,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ### 📦 Phase 1: Initial Launch & Portfolio Foundation (February 2026)
 
 #### [Commit `78154ca`] - 2026-02-25
+
 - **Commit Hash**: `78154cafcdc35b5f940204a9a049c6b2a682bb8e`
 - **Short Hash**: `78154ca`
 - **Author**: dsriharikrishna `<dsriharikrishna2002@gmail.com>`
@@ -207,6 +266,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ---
 
 #### [Commit `a6ac066`] - 2026-02-25
+
 - **Commit Hash**: `a6ac06687fb50e222983f6389ca3225a52a50d54`
 - **Short Hash**: `a6ac066`
 - **Author**: dsriharikrishna `<dsriharikrishna2002@gmail.com>`
@@ -221,6 +281,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ---
 
 #### [Commit `23d8c88`] - 2026-02-25
+
 - **Commit Hash**: `23d8c8834f9136771c6f04b0a9c2a51bf25062f4`
 - **Short Hash**: `23d8c88`
 - **Author**: dsriharikrishna `<dsriharikrishna2002@gmail.com>`
@@ -240,6 +301,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ---
 
 #### [Commit `cb4805c`] - 2026-02-25
+
 - **Commit Hash**: `cb4805cc96756a88c9a7f2c26f9f5c6cf652d8ca`
 - **Short Hash**: `cb4805c`
 - **Author**: Dasari Srihari Krishna `<114545573+dsriharikrishna@users.noreply.github.com>`
@@ -256,10 +318,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ## 📝 How to Maintain and Track Future Logs
 
 When committing new work to this repository:
+
 1. Append the new entry at the top of the **Chronological Commit Log** under the corresponding milestone or a new version header.
 2. Follow the standardized entry template:
+
    ```markdown
    #### [Commit `<short_hash>`] - YYYY-MM-DD
+
    - **Commit Hash**: `<full_hash>`
    - **Short Hash**: `<short_hash>`
    - **Author**: `<author_name>` `<email>`

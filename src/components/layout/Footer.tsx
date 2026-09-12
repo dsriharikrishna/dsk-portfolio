@@ -11,10 +11,8 @@ export default function Footer() {
         <Meteors number={20} />
       </div>
       <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10 relative z-10">
-
         {/* Footer Top */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-
           {/* Identity */}
           <div className="relative group flex flex-col gap-2 text-center md:text-left">
             {/* Focus Light Spotlight */}
@@ -22,7 +20,9 @@ export default function Footer() {
 
             <h4 className="relative z-10 text-xl font-black tracking-tight">
               Sriharikrishna{' '}
-              <span className="text-accent drop-shadow-[0_0_10px_rgba(var(--accent),0.8)]">DASARI</span>
+              <span className="text-accent drop-shadow-[0_0_10px_rgba(var(--accent),0.8)]">
+                DASARI
+              </span>
             </h4>
 
             <p className="relative z-10 text-muted-foreground font-mono text-xs uppercase tracking-widest">
@@ -32,27 +32,22 @@ export default function Footer() {
 
           {/* Meta */}
           <div className="flex flex-col gap-1 text-center md:text-right">
-            <p className="text-sm text-muted-foreground">
-              Designed & Engineered / {currentYear}
-            </p>
+            <p className="text-sm text-muted-foreground">Designed & Engineered / {currentYear}</p>
 
             <p className="text-xs text-muted-foreground/60">
               Built with Next.js, Tailwind & Framer Motion
             </p>
           </div>
-
         </div>
 
         {/* Brand / Signature */}
         <div className="w-full pt-8 border-t border-border/10">
           <div className="group cursor-default flex flex-col items-center w-full">
-
             <p className="text-[10px] md:text-xs text-muted-foreground/50 uppercase tracking-[0.4em] font-medium mb-4 opacity-50 group-hover:opacity-100 transition-opacity duration-500 text-center">
               A Signature Production
             </p>
 
             <div className="w-full flex flex-col items-center">
-
               {/* Surname — Main Visual Focus */}
               <h1 className="mt-1 text-6xl md:text-8xl lg:text-9xl leading-none font-black uppercase tracking-tight text-transparent [-webkit-text-stroke:2px_hsl(var(--accent))] opacity-30 group-hover:opacity-80 transition-all duration-700 drop-shadow-sm">
                 {'DASARI'.split('').map((char, index) => (
@@ -76,9 +71,7 @@ export default function Footer() {
                   </span>
                 ))}
               </h2>
-
             </div>
-
           </div>
         </div>
 
@@ -92,7 +85,6 @@ export default function Footer() {
             BUILDING PRODUCTS, NOT JUST INTERFACES.
           </p>
         </div>
-
       </div>
     </footer>
   );

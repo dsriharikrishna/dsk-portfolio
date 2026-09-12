@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Download, FileText } from 'lucide-react';
 import Link from 'next/link';
 import SectionHeader from '@/components/shared/SectionHeader';
+import { resumeUrl } from '../data/resume';
 
 export default function ResumeSection() {
   return (
@@ -15,7 +16,7 @@ export default function ResumeSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           className="bg-card border border-border p-8 md:p-10 rounded-3xl text-center shadow-2xl relative flex flex-col items-center gap-6"
         >
           <div className="absolute -top-6 left-1/2 -translate-x-1/2 p-4 bg-background border border-border rounded-2xl">
@@ -33,7 +34,7 @@ export default function ResumeSection() {
           </div>
 
           <Link
-            href="https://docs.google.com/document/d/123S0y3jKENNQMnQz_RROW853e8SCmQ5-/edit?usp=sharing&ouid=116905612445915389938&rtpof=true&sd=true"
+            href={resumeUrl}
             target="_blank"
             className="inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background rounded-xl font-bold text-lg hover:bg-foreground/90 hover:scale-105 transition-all duration-300 shadow-xl"
           >

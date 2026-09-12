@@ -18,7 +18,9 @@ const labTopics = [
             <div className="flex gap-12 text-center w-full justify-center">
               <div className="flex flex-col items-center gap-1">
                 <span className="text-muted-foreground text-xs">UI State</span>
-                <span className="bg-card border border-border px-3 py-1 rounded">Zustand / Redux</span>
+                <span className="bg-card border border-border px-3 py-1 rounded">
+                  Zustand / Redux
+                </span>
               </div>
               <div className="flex flex-col items-center gap-1">
                 <span className="text-muted-foreground text-xs">Server State</span>
@@ -30,7 +32,9 @@ const labTopics = [
           </div>
         </div>
         <p className="text-muted-foreground leading-relaxed">
-          I separate client state from server state instead of putting everything into one global store. React Query handles caching and synchronization, while Zustand/Redux manages pure UI interactions.
+          I separate client state from server state instead of putting everything into one global
+          store. React Query handles caching and synchronization, while Zustand/Redux manages pure
+          UI interactions.
         </p>
       </div>
     ),
@@ -51,13 +55,18 @@ const labTopics = [
             <div className="w-[1px] h-6 bg-border my-2"></div>
             <span className="text-primary font-bold">API (Node / FastAPI)</span>
             <div className="w-[1px] h-6 bg-border my-2"></div>
-            <span className="bg-card border border-border px-4 py-2 rounded">Database (PostgreSQL)</span>
+            <span className="bg-card border border-border px-4 py-2 rounded">
+              Database (PostgreSQL)
+            </span>
             <div className="w-[1px] h-6 bg-border my-2"></div>
-            <span className="bg-card border border-border px-4 py-2 rounded">Infrastructure (Docker / AWS)</span>
+            <span className="bg-card border border-border px-4 py-2 rounded">
+              Infrastructure (Docker / AWS)
+            </span>
           </div>
         </div>
         <p className="text-muted-foreground leading-relaxed">
-          A scalable product requires clear boundaries. This architecture playground demonstrates the separation of concerns from the client-side UI to the underlying cloud infrastructure.
+          A scalable product requires clear boundaries. This architecture playground demonstrates
+          the separation of concerns from the client-side UI to the underlying cloud infrastructure.
         </p>
       </div>
     ),
@@ -92,7 +101,8 @@ const labTopics = [
           </div>
         </div>
         <p className="text-muted-foreground leading-relaxed">
-          I don't just guess what's slow. I measure it, isolate the bottleneck, and apply targeted optimizations like component memoization or deferred state updates.
+          I don&apos;t just guess what&apos;s slow. I measure it, isolate the bottleneck, and apply
+          targeted optimizations like component memoization or deferred state updates.
         </p>
       </div>
     ),
@@ -105,12 +115,15 @@ export default function EngineeringLab() {
   const [activeTopic, setActiveTopic] = useState(labTopics[0].id);
 
   return (
-    <section id="engineer" className="py-8 md:py-12 relative bg-secondary/10 border-t border-border/50">
+    <section
+      id="engineer"
+      className="py-8 md:py-12 relative bg-secondary/10 border-t border-border/50"
+    >
       <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           className="w-full"
         >
           <SectionHeader
@@ -129,10 +142,11 @@ export default function EngineeringLab() {
               <button
                 key={topic.id}
                 onClick={() => setActiveTopic(topic.id)}
-                className={`text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium ${activeTopic === topic.id
+                className={`text-left px-6 py-4 rounded-xl transition-all duration-300 font-medium ${
+                  activeTopic === topic.id
                     ? 'bg-accent/10 border border-accent/50 text-accent'
                     : 'bg-card border border-border text-muted-foreground hover:bg-secondary hover:text-foreground'
-                  }`}
+                }`}
               >
                 {topic.title}
               </button>
@@ -154,9 +168,7 @@ export default function EngineeringLab() {
                       className="h-full flex flex-col gap-8"
                     >
                       <h4 className="text-2xl font-bold text-foreground">{topic.title}</h4>
-                      <div className="flex-grow">
-                        {topic.content}
-                      </div>
+                      <div className="flex-grow">{topic.content}</div>
                     </motion.div>
                   )
               )}

@@ -27,12 +27,13 @@ export default function GithubMetrics() {
         ]);
 
         if (!userRes.ok || !reposRes.ok) {
-          console.warn('GitHub API returned an error. Please check the username and API rate limits.');
+          console.warn(
+            'GitHub API returned an error. Please check the username and API rate limits.'
+          );
           setStats(null);
           setLoading(false);
           return;
         }
-
 
         const userData = await userRes.json();
         const repos = await reposRes.json();
@@ -100,7 +101,9 @@ export default function GithubMetrics() {
       <div className="mt-12 space-y-8 animate-fade-up">
         <div className="flex items-center gap-4 mb-6">
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-          <h3 className="text-xl font-semibold text-foreground whitespace-nowrap">GitHub Activity</h3>
+          <h3 className="text-xl font-semibold text-foreground whitespace-nowrap">
+            GitHub Activity
+          </h3>
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

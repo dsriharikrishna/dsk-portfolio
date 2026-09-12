@@ -6,7 +6,7 @@ tags: NewYearNewYouGoogleAI, nextjs, typescript, portfolio
 cover_image: https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1000&h=420&fit=crop
 ---
 
-*This is a submission for the [New Year, New You Portfolio Challenge Presented by Google AI](https://dev.to/challenges/new-year-new-you-google-ai-2025-12-31)*
+_This is a submission for the [New Year, New You Portfolio Challenge Presented by Google AI](https://dev.to/challenges/new-year-new-you-google-ai-2025-12-31)_
 
 ## About Me
 
@@ -56,11 +56,11 @@ export async function getGitHubStats(username: string) {
     fetch(`https://api.github.com/users/${username}`),
     fetch(`https://api.github.com/users/${username}/repos?per_page=100`),
   ]);
-  
+
   // Calculate total stars, forks, and language distribution
   const totalStars = repos.reduce((acc, repo) => acc + repo.stargazers_count, 0);
   const topLanguages = calculateLanguageDistribution(repos);
-  
+
   return { totalStars, totalForks, topLanguages, publicRepos };
 }
 ```
@@ -113,14 +113,17 @@ export async function getDevToArticles(username: string) {
 ### Challenges Solved
 
 **Challenge 1: Static Export vs. API Routes**
+
 - **Problem**: Next.js static export disabled server-side features
 - **Solution**: Used standard build with Netlify's Next.js Runtime
 
 **Challenge 2: Build-Time Environment Variables**
+
 - **Problem**: Resend API key caused build failures
 - **Solution**: Implemented lazy initialization pattern
 
 **Challenge 3: GitHub Stats Reliability**
+
 - **Problem**: Third-party services had downtime
 - **Solution**: Built custom implementation with GitHub's official API
 
@@ -129,6 +132,7 @@ export async function getDevToArticles(username: string) {
 ### 1. **Custom GitHub Stats Component** 🎯
 
 Instead of relying on external services, I built a robust solution that:
+
 - Fetches real-time data from GitHub's official API
 - Calculates top 5 programming languages with percentages
 - Displays beautiful progress bars with color coding
@@ -137,6 +141,7 @@ Instead of relying on external services, I built a robust solution that:
 ### 2. **Seamless Dev.to Integration** 📝
 
 My portfolio automatically syncs with my Dev.to articles:
+
 - Individual article pages with full content
 - Cover images, tags, and engagement metrics
 - SEO optimized with metadata
@@ -145,6 +150,7 @@ My portfolio automatically syncs with my Dev.to articles:
 ### 3. **Print-Optimized Resume Page** 📄
 
 A dedicated `/resume` route with:
+
 - One-click PDF download via browser print
 - ATS-friendly format for job applications
 - Professional layout optimized for A4 paper
@@ -188,6 +194,7 @@ A dedicated `/resume` route with:
 ## Conclusion
 
 Building this portfolio was an incredible journey. It showcases not just my projects, but my ability to:
+
 - Architect scalable applications
 - Integrate with external APIs
 - Solve real-world problems

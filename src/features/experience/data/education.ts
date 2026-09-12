@@ -12,14 +12,12 @@ export const education: Education[] = [
     degree: 'Intermediate — Science',
     institution: 'Sree Sai Co-operative Junior College, Narayanpet',
     period: 'Jul 2017 - Jun 2019',
-    description:
-      'Completed Intermediate education in Science with a Grade of 8.4.',
+    description: 'Completed Intermediate education in Science with a Grade of 8.4.',
   },
   {
     degree: 'SSC',
     institution: 'Sree Hamsavahini High School, Narayanpet',
     period: 'Jun 2016 - Mar 2017',
-    description:
-      'Completed secondary school education with a Grade of 8.3.',
+    description: 'Completed secondary school education with a Grade of 8.3.',
   },
 ];

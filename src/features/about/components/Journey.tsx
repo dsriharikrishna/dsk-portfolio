@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { Terminal, Lightbulb, FileText, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
 
 const journeys = [
   {
@@ -41,10 +40,10 @@ export default function Journey() {
   return (
     <section className="py-14 md:py-16 border-t border-border/50 bg-secondary/30 relative">
       <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5 }}
           className="w-full"
         >
@@ -65,7 +64,7 @@ export default function Journey() {
                 key={journey.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 onClick={() => scrollToSection(journey.href)}
                 className="group cursor-pointer rounded-2xl border border-border bg-card p-8 hover:border-accent hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] transition-all duration-300 relative overflow-hidden flex flex-col gap-8"
@@ -73,7 +72,7 @@ export default function Journey() {
                 <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-x-4 group-hover:translate-x-0">
                   <ArrowRight className="w-5 h-5 text-accent" />
                 </div>
-                
+
                 <div className="flex items-center gap-4">
                   <div className="p-3 rounded-lg bg-secondary text-foreground group-hover:bg-accent/10 group-hover:text-accent transition-colors">
                     <Icon className="w-6 h-6" />
@@ -83,7 +82,10 @@ export default function Journey() {
 
                 <ul className="flex flex-col gap-4">
                   {journey.items.map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-muted-foreground group-hover:text-foreground/80 transition-colors">
+                    <li
+                      key={i}
+                      className="flex items-center gap-3 text-muted-foreground group-hover:text-foreground/80 transition-colors"
+                    >
                       <div className="w-1.5 h-1.5 rounded-full bg-border group-hover:bg-accent/50 transition-colors" />
                       <span className="font-medium">{item}</span>
                     </li>

@@ -7,7 +7,7 @@ export const aboutData = {
   summary: [
     'I am a Full Stack Developer with up to 2 years of experience building scalable SaaS products and production-ready web applications using React.js, Next.js, TypeScript, and Node.js.',
     'My expertise spans developing dashboard systems, media platforms, and REST API integrations, with a focus on performance optimization and clean architecture. I specialize in designing reusable component structures, efficient state management, and highly responsive UI systems.',
-    "I have significant experience in implementing role-based access control (RBAC), media management platforms, and interactive analytics dashboards. I am passionate about modern web technologies and building user-centric digital solutions.",
+    'I have significant experience in implementing role-based access control (RBAC), media management platforms, and interactive analytics dashboards. I am passionate about modern web technologies and building user-centric digital solutions.',
   ],
   highlights: [
     {
@@ -24,12 +24,14 @@ export const aboutData = {
     {
       icon: Zap,
       title: 'Performance Focused',
-      description: 'Experience in optimizing rendering and state management for scalable applications.',
+      description:
+        'Experience in optimizing rendering and state management for scalable applications.',
     },
     {
       icon: Shield,
       title: 'Secure Architecture',
-      description: 'Expertise in implementing Authentication, RBAC, and secure REST API integrations.',
+      description:
+        'Expertise in implementing Authentication, RBAC, and secure REST API integrations.',
     },
   ],
 };
@@ -45,4 +47,3 @@ export const heroData = {
     secondary: { label: 'View Projects', href: '#projects' },
   },
 };
-

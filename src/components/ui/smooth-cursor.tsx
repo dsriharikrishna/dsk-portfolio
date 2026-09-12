@@ -1,259 +1,361 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState, type FC } from "react"
-import { motion, useSpring } from "motion/react"
-
-interface Position {
-  x: number
-  y: number
-}
+import { useEffect, useRef, useState, type FC } from 'react';
+import { AnimatePresence, motion, useMotionValue, useSpring } from 'motion/react';
 
 export interface SmoothCursorProps {
-  cursor?: React.ReactNode
-  springConfig?: {
-    damping: number
-    stiffness: number
-    mass: number
-    restDelta: number
-  }
+  cursor?: React.ReactNode;
 }
 
-const DESKTOP_POINTER_QUERY = "(any-hover: hover) and (any-pointer: fine)"
+type CursorMode = 'default' | 'clickable' | 'text';
+
+const DESKTOP_POINTER_QUERY = '(any-hover: hover) and (any-pointer: fine)';
 
 function isTrackablePointer(pointerType: string) {
-  return pointerType !== "touch"
+  return pointerType !== 'touch';
 }
 
-const DefaultCursorSVG: FC = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={50}
-      height={54}
-      viewBox="0 0 50 54"
-      fill="none"
-      style={{ scale: 0.5 }}
-    >
-      <g filter="url(#filter0_d_91_7928)">
-        <path
-          d="M42.6817 41.1495L27.5103 6.79925C26.7269 5.02557 24.2082 5.02558 23.3927 6.79925L7.59814 41.1495C6.75833 42.9759 8.52712 44.8902 10.4125 44.1954L24.3757 39.0496C24.8829 38.8627 25.4385 38.8627 25.9422 39.0496L39.8121 44.1954C41.6849 44.8902 43.4884 42.9759 42.6817 41.1495Z"
-          fill="black"
-        />
-        <path
-          d="M43.7146 40.6933L28.5431 6.34306C27.3556 3.65428 23.5772 3.69516 22.3668 6.32755L6.57226 40.6778C5.3134 43.4156 7.97238 46.298 10.803 45.2549L24.7662 40.109C25.0221 40.0147 25.2999 40.0156 25.5494 40.1082L39.4193 45.254C42.2261 46.2953 44.9254 43.4347 43.7146 40.6933Z"
-          stroke="white"
-          strokeWidth={2.25825}
-        />
-      </g>
-      <defs>
-        <filter
-          id="filter0_d_91_7928"
-          x={0.602397}
-          y={0.952444}
-          width={49.0584}
-          height={52.428}
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity={0} result="BackgroundImageFix" />
-          <feColorMatrix
-            in="SourceAlpha"
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
-          />
-          <feOffset dy={2.25825} />
-          <feGaussianBlur stdDeviation={2.25825} />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0"
-          />
-          <feBlend
-            mode="normal"
-            in2="BackgroundImageFix"
-            result="effect1_dropShadow_91_7928"
-          />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="effect1_dropShadow_91_7928"
-            result="shape"
-          />
-        </filter>
-      </defs>
-    </svg>
-  )
+interface ClickRipple {
+  id: number;
+  x: number;
+  y: number;
 }
 
-export function SmoothCursor({
-  cursor = <DefaultCursorSVG />,
-  springConfig = {
-    damping: 45,
-    stiffness: 400,
-    mass: 1,
-    restDelta: 0.001,
-  },
-}: SmoothCursorProps) {
-  const lastMousePos = useRef<Position>({ x: 0, y: 0 })
-  const velocity = useRef<Position>({ x: 0, y: 0 })
-  const lastUpdateTime = useRef(Date.now())
-  const previousAngle = useRef(0)
-  const accumulatedRotation = useRef(0)
-  const [isEnabled, setIsEnabled] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
+// Precision I-Beam Cursor (Text Mode) - Center at (8, 11)
+const IBeamCursor: FC = () => (
+  <svg
+    width="16"
+    height="22"
+    viewBox="0 0 16 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]"
+  >
+    <path
+      d="M3.5 2H12.5M8 2V20M3.5 20H12.5"
+      stroke="#ffffff"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+    />
+  </svg>
+);
 
-  const cursorX = useSpring(0, springConfig)
-  const cursorY = useSpring(0, springConfig)
-  const rotation = useSpring(0, {
-    ...springConfig,
-    damping: 60,
-    stiffness: 300,
-  })
-  const scale = useSpring(1, {
-    ...springConfig,
-    stiffness: 500,
-    damping: 35,
-  })
+export function SmoothCursor({ cursor }: SmoothCursorProps) {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
+  const [cursorMode, setCursorMode] = useState<CursorMode>('default');
+  const [ripples, setRipples] = useState<ClickRipple[]>([]);
 
+  // Instant hardware mouse coordinates (0ms lag)
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // Dynamic aerodynamic tilt on movement
+  const lastMousePos = useRef({ x: 0, y: 0 });
+  const tiltMotion = useMotionValue(0);
+  const tiltSpring = useSpring(tiltMotion, {
+    damping: 20,
+    stiffness: 260,
+    mass: 0.2,
+  });
+
+  // Detect fine pointer support (desktop mouse/trackpad)
   useEffect(() => {
-    const mediaQuery = window.matchMedia(DESKTOP_POINTER_QUERY)
+    const mediaQuery = window.matchMedia(DESKTOP_POINTER_QUERY);
 
     const updateEnabled = () => {
-      const nextIsEnabled = mediaQuery.matches
-      setIsEnabled(nextIsEnabled)
+      const nextIsEnabled = mediaQuery.matches;
+      setIsEnabled(nextIsEnabled);
 
-      if (!nextIsEnabled) {
-        setIsVisible(false)
+      if (nextIsEnabled) {
+        document.documentElement.classList.add('has-custom-cursor');
+      } else {
+        document.documentElement.classList.remove('has-custom-cursor');
+        setIsVisible(false);
       }
-    }
+    };
 
-    updateEnabled()
-    mediaQuery.addEventListener("change", updateEnabled)
+    updateEnabled();
+    mediaQuery.addEventListener('change', updateEnabled);
 
     return () => {
-      mediaQuery.removeEventListener("change", updateEnabled)
-    }
-  }, [])
+      mediaQuery.removeEventListener('change', updateEnabled);
+      document.documentElement.classList.remove('has-custom-cursor');
+    };
+  }, []);
 
+  // Event listeners for motion, inertia tilt, and interactive state detection
   useEffect(() => {
-    if (!isEnabled) {
-      return
-    }
+    if (!isEnabled) return;
 
-    let timeout: ReturnType<typeof setTimeout> | null = null
+    let tiltTimer: ReturnType<typeof setTimeout> | null = null;
 
-    const updateVelocity = (currentPos: Position) => {
-      const currentTime = Date.now()
-      const deltaTime = currentTime - lastUpdateTime.current
+    const determineCursorMode = (target: HTMLElement | null): CursorMode => {
+      if (!target) return 'default';
 
-      if (deltaTime > 0) {
-        velocity.current = {
-          x: (currentPos.x - lastMousePos.current.x) / deltaTime,
-          y: (currentPos.y - lastMousePos.current.y) / deltaTime,
-        }
+      // 1. Clickable elements
+      const isClickable = Boolean(
+        target.closest(
+          'a, button, [role="button"], input[type="submit"], input[type="button"], select, label, summary, [data-cursor="clickable"], .cursor-pointer'
+        )
+      );
+      if (isClickable) return 'clickable';
+
+      // Fallback check for computed cursor style
+      try {
+        const computed = window.getComputedStyle(target).cursor;
+        if (computed === 'pointer') return 'clickable';
+        if (computed === 'text') return 'text';
+      } catch {
+        // Ignore unstyled elements
       }
 
-      lastUpdateTime.current = currentTime
-      lastMousePos.current = currentPos
-    }
+      // 2. Text input / textareas / contenteditable
+      const isTextInput = Boolean(
+        target.closest(
+          'input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="tel"], input[type="url"], input:not([type]), textarea, [contenteditable="true"]'
+        )
+      );
+      if (isTextInput) return 'text';
 
-    const smoothPointerMove = (e: PointerEvent) => {
-      if (!isTrackablePointer(e.pointerType)) {
-        return
+      // 3. Text content blocks
+      const isTextContent = Boolean(
+        target.closest(
+          'p, h1, h2, h3, h4, h5, h6, span, blockquote, pre, code, [data-cursor="text"]'
+        )
+      );
+      if (isTextContent) return 'text';
+
+      return 'default';
+    };
+
+    const handlePointerMove = (e: PointerEvent) => {
+      if (!isTrackablePointer(e.pointerType)) return;
+
+      // Compute horizontal velocity for subtle aerodynamic tilt
+      const deltaX = e.clientX - lastMousePos.current.x;
+      lastMousePos.current = { x: e.clientX, y: e.clientY };
+
+      // Clamp dynamic lean between -12 and +12 degrees
+      const targetTilt = Math.max(-12, Math.min(12, deltaX * 0.45));
+      tiltMotion.set(targetTilt);
+
+      // Spring smoothly back to upright when movement stops
+      if (tiltTimer) clearTimeout(tiltTimer);
+      tiltTimer = setTimeout(() => {
+        tiltMotion.set(0);
+      }, 70);
+
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+
+      if (!isVisible) {
+        setIsVisible(true);
       }
 
-      setIsVisible(true)
+      const nextMode = determineCursorMode(e.target as HTMLElement | null);
+      setCursorMode(nextMode);
+    };
 
-      const currentPos = { x: e.clientX, y: e.clientY }
-      updateVelocity(currentPos)
+    const handlePointerDown = (e: PointerEvent) => {
+      if (!isTrackablePointer(e.pointerType)) return;
+      setIsClicking(true);
 
-      const speed = Math.sqrt(
-        Math.pow(velocity.current.x, 2) + Math.pow(velocity.current.y, 2)
-      )
+      // Spawn subtle click ripple directly from cursor tip
+      const id = Date.now();
+      setRipples((prev) => [...prev.slice(-2), { id, x: e.clientX, y: e.clientY }]);
+    };
 
-      cursorX.set(currentPos.x)
-      cursorY.set(currentPos.y)
+    const handlePointerUp = () => {
+      setIsClicking(false);
+    };
 
-      if (speed > 0.1) {
-        const currentAngle =
-          Math.atan2(velocity.current.y, velocity.current.x) * (180 / Math.PI) +
-          90
+    const handleMouseLeave = () => {
+      setIsVisible(false);
+    };
 
-        let angleDiff = currentAngle - previousAngle.current
-        if (angleDiff > 180) angleDiff -= 360
-        if (angleDiff < -180) angleDiff += 360
-        accumulatedRotation.current += angleDiff
-        rotation.set(accumulatedRotation.current)
-        previousAngle.current = currentAngle
+    const handleMouseEnter = () => {
+      setIsVisible(true);
+    };
 
-        scale.set(0.95)
+    const handleWindowBlur = () => {
+      setIsVisible(false);
+    };
 
-        if (timeout !== null) {
-          clearTimeout(timeout)
-        }
+    const handleWindowFocus = () => {
+      setIsVisible(true);
+    };
 
-        timeout = setTimeout(() => {
-          scale.set(1)
-        }, 150)
-      }
-    }
-
-    let rafId = 0
-    const throttledPointerMove = (e: PointerEvent) => {
-      if (!isTrackablePointer(e.pointerType)) {
-        return
-      }
-
-      if (rafId) return
-
-      rafId = requestAnimationFrame(() => {
-        smoothPointerMove(e)
-        rafId = 0
-      })
-    }
-
-    document.body.style.cursor = "none"
-    window.addEventListener("pointermove", throttledPointerMove, {
-      passive: true,
-    })
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    window.addEventListener('pointerdown', handlePointerDown, { passive: true });
+    window.addEventListener('pointerup', handlePointerUp, { passive: true });
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
+    window.addEventListener('blur', handleWindowBlur);
+    window.addEventListener('focus', handleWindowFocus);
 
     return () => {
-      window.removeEventListener("pointermove", throttledPointerMove)
-      document.body.style.cursor = "auto"
-      if (rafId) cancelAnimationFrame(rafId)
-      if (timeout !== null) {
-        clearTimeout(timeout)
-      }
-    }
-  }, [cursorX, cursorY, rotation, scale, isEnabled])
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerdown', handlePointerDown);
+      window.removeEventListener('pointerup', handlePointerUp);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      window.removeEventListener('blur', handleWindowBlur);
+      window.removeEventListener('focus', handleWindowFocus);
+      if (tiltTimer) clearTimeout(tiltTimer);
+    };
+  }, [isEnabled, isVisible, mouseX, mouseY, tiltMotion]);
 
   if (!isEnabled) {
-    return null
+    return null;
+  }
+
+  // Custom node override
+  if (cursor) {
+    return (
+      <motion.div
+        className="pointer-events-none fixed top-0 left-0 z-[9999] will-change-transform"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          transformOrigin: '0 0',
+        }}
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: isVisible ? 1 : 0,
+          scale: isClicking ? 0.88 : 1,
+        }}
+        transition={{ duration: 0.1 }}
+      >
+        {cursor}
+      </motion.div>
+    );
   }
 
   return (
-    <motion.div
-      style={{
-        position: "fixed",
-        left: cursorX,
-        top: cursorY,
-        translateX: "-50%",
-        translateY: "-50%",
-        rotate: rotation,
-        scale: scale,
-        zIndex: 100,
-        pointerEvents: "none",
-        willChange: "transform",
-        opacity: isVisible ? 1 : 0,
-      }}
-      initial={false}
-      animate={{ opacity: isVisible ? 1 : 0 }}
-      transition={{
-        duration: 0.15,
-      }}
-    >
-      {cursor}
-    </motion.div>
-  )
+    <>
+      {/* 1. Expanding Click Ripples */}
+      <AnimatePresence>
+        {ripples.map((ripple) => (
+          <motion.div
+            key={ripple.id}
+            className="pointer-events-none fixed top-0 left-0 z-[9997] rounded-full border border-purple-400"
+            style={{
+              left: ripple.x,
+              top: ripple.y,
+              transform: 'translate(-50%, -50%)',
+            }}
+            initial={{ width: 4, height: 4, opacity: 0.85, scale: 0.6 }}
+            animate={{ width: 34, height: 34, opacity: 0, scale: 2 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            onAnimationComplete={() => {
+              setRipples((prev) => prev.filter((r) => r.id !== ripple.id));
+            }}
+          />
+        ))}
+      </AnimatePresence>
+
+      {/* 2. Zero-Lag Animated Precision Cursor */}
+      <motion.div
+        className="pointer-events-none fixed top-0 left-0 z-[9999] will-change-transform"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          transformOrigin: '0 0',
+        }}
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: isVisible ? 1 : 0,
+        }}
+        transition={{
+          opacity: { duration: 0.12 },
+        }}
+      >
+        {cursorMode === 'text' ? (
+          <motion.div
+            key="text-mode"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{
+              scale: isClicking ? 0.85 : 1,
+              opacity: 1,
+            }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.12, ease: 'easeOut' }}
+            style={{ transform: 'translate(-8px, -11px)' }}
+          >
+            <IBeamCursor />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="arrow-mode"
+            style={{
+              transformOrigin: '0 0',
+              rotate: cursorMode === 'clickable' ? -8 : tiltSpring,
+            }}
+            animate={{
+              scale: isClicking ? 0.84 : cursorMode === 'clickable' ? 1.18 : 1,
+            }}
+            transition={{
+              type: 'spring',
+              damping: 18,
+              stiffness: 350,
+              mass: 0.25,
+            }}
+          >
+            <svg
+              width="24"
+              height="26"
+              viewBox="0 0 24 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{
+                filter:
+                  cursorMode === 'clickable'
+                    ? 'drop-shadow(0 0 8px rgba(192, 132, 252, 0.9)) drop-shadow(0 2px 5px rgba(0,0,0,0.9))'
+                    : 'drop-shadow(0 2px 5px rgba(0,0,0,0.8))',
+                transition: 'filter 0.18s ease',
+              }}
+            >
+              <motion.path
+                d="M0.5 0.5L7 21L11.5 13.5L19.5 9.5L0.5 0.5Z"
+                fill="#09090b"
+                strokeWidth={1.5}
+                animate={{
+                  stroke: cursorMode === 'clickable' ? '#c084fc' : '#ffffff',
+                }}
+                transition={{ duration: 0.15 }}
+                strokeLinejoin="round"
+                strokeLinecap="round"
+              />
+            </svg>
+
+            {/* Clickable Mode: Glowing Interactive Pulse Dot */}
+            <AnimatePresence>
+              {cursorMode === 'clickable' && (
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{
+                    scale: [0.9, 1.25, 0.9],
+                    opacity: 1,
+                  }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  transition={{
+                    scale: {
+                      repeat: Infinity,
+                      duration: 1.2,
+                      ease: 'easeInOut',
+                    },
+                    duration: 0.15,
+                  }}
+                  className="absolute left-[13px] top-[14px] w-2 h-2 rounded-full bg-purple-400 shadow-[0_0_8px_#c084fc]"
+                />
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </motion.div>
+    </>
+  );
 }

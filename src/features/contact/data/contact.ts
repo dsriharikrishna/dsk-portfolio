@@ -34,4 +34,3 @@ export const socialLinks: SocialLink[] = [
     href: 'mailto:dsriharik8432@gmail.com',
   },
 ];
-

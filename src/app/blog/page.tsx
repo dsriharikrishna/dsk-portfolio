@@ -69,12 +69,7 @@ export default function BlogPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {articles.map((article) => (
-                <a 
-                  key={article.id} 
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a key={article.id} href={article.url} target="_blank" rel="noopener noreferrer">
                   <GlassCard className="h-full overflow-hidden group hover:border-primary/30 transition-all duration-300 cursor-pointer">
                     {/* Cover Image */}
                     {article.cover_image && (

@@ -5,10 +5,11 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src/ --max-warnings 50"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

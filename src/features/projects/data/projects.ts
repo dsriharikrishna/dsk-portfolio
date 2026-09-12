@@ -1,4 +1,3 @@
-
 import { Project } from '@/types';
 
 export const projects: Project[] = [
@@ -18,8 +17,7 @@ export const projects: Project[] = [
     solution:
       'Built and refined production frontend experiences across role-based modules and complex workflows, connecting UI state, server state and APIs while continuously improving usability, validation, loading states, data handling and frontend performance.',
 
-    role:
-      'Frontend / Product Engineering',
+    role: 'Frontend / Product Engineering',
 
     highlights: [
       'Enterprise, LOB, Annotator and Vendor experiences',
@@ -64,8 +62,7 @@ export const projects: Project[] = [
     solution:
       'Built and refined frontend experiences across the admin and contributor sides of the platform, integrating APIs and creating data-driven workflows for datasets, benchmarks, evaluations, dimensions, leaderboards and regression tracking.',
 
-    role:
-      'Frontend / Product Engineering',
+    role: 'Frontend / Product Engineering',
 
     highlights: [
       'Admin dashboard and management experiences',
@@ -109,8 +106,7 @@ export const projects: Project[] = [
     solution:
       'Owned the website end-to-end, starting from product understanding and UI/UX direction through visual design, component architecture, frontend development, responsive implementation, animations and production-ready refinement.',
 
-    role:
-      'End-to-End Product Engineer — Design → Development',
+    role: 'End-to-End Product Engineer — Design → Development',
 
     highlights: [
       'Owned the website from concept to implementation',
@@ -154,8 +150,7 @@ export const projects: Project[] = [
     solution:
       'Built scalable frontend modules for a digital media platform supporting audio, video and eBook content, along with publishing, event management and rich content editing experiences.',
 
-    role:
-      'Frontend Developer / Product Engineer',
+    role: 'Frontend Developer / Product Engineer',
 
     highlights: [
       'Audio and video content experiences',
@@ -194,8 +189,7 @@ export const projects: Project[] = [
     solution:
       'Developed frontend experiences covering authentication, role-based access, analytics and API-driven product workflows with reusable React components and structured state management.',
 
-    role:
-      'Frontend Developer',
+    role: 'Frontend Developer',
 
     highlights: [
       'Authentication experiences',
@@ -208,14 +202,7 @@ export const projects: Project[] = [
       'Responsive UI',
     ],
 
-    tech: [
-      'Next.js',
-      'React',
-      'TypeScript',
-      'Redux Toolkit',
-      'Tailwind CSS',
-      'REST APIs',
-    ],
+    tech: ['Next.js', 'React', 'TypeScript', 'Redux Toolkit', 'Tailwind CSS', 'REST APIs'],
 
     caseStudySlug: 'educare-ai',
   },
@@ -232,8 +219,7 @@ export const projects: Project[] = [
     solution:
       'Built a data-driven administration dashboard with reusable table components, pagination, CRUD workflows and structured state management to simplify operational tasks.',
 
-    role:
-      'Frontend Developer',
+    role: 'Frontend Developer',
 
     highlights: [
       'Provider management',
@@ -246,13 +232,7 @@ export const projects: Project[] = [
       'API integration',
     ],
 
-    tech: [
-      'React',
-      'Node.js',
-      'Redux Toolkit',
-      'Material UI',
-      'REST APIs',
-    ],
+    tech: ['React', 'Node.js', 'Redux Toolkit', 'Material UI', 'REST APIs'],
 
     caseStudySlug: 'pronto',
   },
@@ -269,8 +249,7 @@ export const projects: Project[] = [
     solution:
       'Developed frontend experiences for a career platform combining resume creation, job discovery and advanced filtering into a streamlined user workflow.',
 
-    role:
-      'Frontend Developer',
+    role: 'Frontend Developer',
 
     highlights: [
       'ATS-oriented resume builder',
@@ -282,12 +261,7 @@ export const projects: Project[] = [
       'Reusable UI components',
     ],
 
-    tech: [
-      'React',
-      'Redux Toolkit',
-      'Tailwind CSS',
-      'REST APIs',
-    ],
+    tech: ['React', 'Redux Toolkit', 'Tailwind CSS', 'REST APIs'],
 
     caseStudySlug: 'fit4hire',
   },
@@ -304,8 +278,7 @@ export const projects: Project[] = [
     solution:
       'Built a browser automation extension that maps JSON data to DOM selectors and dynamically uses those mappings to populate web forms.',
 
-    role:
-      'Frontend / JavaScript Developer',
+    role: 'Frontend / JavaScript Developer',
 
     highlights: [
       'JSON-to-form mapping',
@@ -317,12 +290,7 @@ export const projects: Project[] = [
       'Reusable automation workflows',
     ],
 
-    tech: [
-      'JavaScript',
-      'MUI',
-      'Browser APIs',
-      'DOM APIs',
-    ],
+    tech: ['JavaScript', 'MUI', 'Browser APIs', 'DOM APIs'],
 
     caseStudySlug: 'lucas-form-fill',
   },
