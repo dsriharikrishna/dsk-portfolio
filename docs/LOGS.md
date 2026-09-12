@@ -86,13 +86,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
   - **Universal Thin & Small Scrollbar (`globals.css`)**:
     - Configured a minimalist 6px thin scrollbar universally across the entire application:
       - Standard CSS `scrollbar-width: thin` and `scrollbar-color` on `html` and `*` for Firefox.
-      - WebKit pseudo-elements (`::-webkit-scrollbar` with `6px` width and height, transparent track, pill-rounded thumb, and accent hover/active glow).
+  - **Global Error Boundaries & 404 Not Found Pages**:
+    - Created branded [`not-found.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/app/not-found.tsx) with custom 404 badge, ambient glow, and quick navigation back to Home and Projects.
+    - Created client error boundary [`error.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/app/error.tsx) for route-level runtime errors with try-again reload and digest support.
+    - Created root [`global-error.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/app/global-error.tsx) with fallback HTML shell to recover from top-level layout failures.
+  - **Eliminated Hardcoded Inline Data**:
+    - Centralized contact email, GitHub URL, and LinkedIn URLs in [`Contact.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/features/contact/components/Contact.tsx) and [`GithubSection.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/features/github/components/GithubSection.tsx) to use [`src/features/contact/data/contact.ts`](file:///c:/PROJECTS/dsk-portfolio/src/features/contact/data/contact.ts).
+    - Replaced placeholder `hello@example.com` and hardcoded username strings.
+  - **Comprehensive Mobile Responsiveness Overhaul**:
+    - **Navbar Capsule (`Navbar.tsx`)**: Added `max-w-[calc(100vw-1rem)]` overflow capsule with responsive padding (`px-2.5 py-1.5 sm:px-4 sm:py-2`) preventing mobile viewport overflow.
+    - **Hero Typography (`Hero.tsx`)**: Scaled main display headline to `text-3xl sm:text-5xl md:text-6xl` preventing awkward breaks on 320px–375px screens.
+    - **Footer Signature (`Footer.tsx`)**: Scaled typographic names to `text-4xl sm:text-6xl md:text-8xl` with `break-all sm:break-normal` to eliminate mobile horizontal scroll issues.
 - **Changed Files**:
+  - `src/app/not-found.tsx`
+  - `src/app/error.tsx`
+  - `src/app/global-error.tsx`
+  - `src/features/contact/components/Contact.tsx`
+  - `src/features/github/components/GithubSection.tsx`
+  - `src/components/layout/Navbar.tsx`
+  - `src/components/layout/Footer.tsx`
+  - `src/components/sections/Hero.tsx`
   - `src/app/globals.css`
   - `src/services/botKnowledge.ts`
   - `src/components/shared/FloatingActions.tsx`
-  - `src/app/layout.tsx`
-  - `src/features/skills/components/TechIcon.tsx`
   - `src/features/skills/components/StackMap.tsx`
   - `src/features/skills/components/Skills.tsx`
   - `src/components/sections/Hero.tsx`

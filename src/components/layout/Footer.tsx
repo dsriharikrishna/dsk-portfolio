@@ -49,7 +49,7 @@ export default function Footer() {
 
             <div className="w-full flex flex-col items-center">
               {/* Surname — Main Visual Focus */}
-              <h1 className="mt-1 text-6xl md:text-8xl lg:text-9xl leading-none font-black uppercase tracking-tight text-transparent [-webkit-text-stroke:2px_hsl(var(--accent))] opacity-30 group-hover:opacity-80 transition-all duration-700 drop-shadow-sm">
+              <h1 className="mt-1 text-4xl sm:text-6xl md:text-8xl lg:text-9xl leading-none font-black uppercase tracking-tight text-transparent [-webkit-text-stroke:1.5px_hsl(var(--accent))] sm:[-webkit-text-stroke:2px_hsl(var(--accent))] opacity-30 group-hover:opacity-80 transition-all duration-700 drop-shadow-sm select-none">
                 {'DASARI'.split('').map((char, index) => (
                   <span
                     key={index}
@@ -61,7 +61,7 @@ export default function Footer() {
               </h1>
 
               {/* First Name */}
-              <h2 className="text-5xl md:text-7xl lg:text-8xl leading-none font-black uppercase tracking-tight text-transparent [-webkit-text-stroke:1px_hsl(var(--foreground))] opacity-10 group-hover:opacity-30 transition-all duration-500">
+              <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-8xl leading-none font-black uppercase tracking-tight text-transparent [-webkit-text-stroke:1px_hsl(var(--foreground))] opacity-10 group-hover:opacity-30 transition-all duration-500 select-none break-all sm:break-normal text-center">
                 {'SRIHARIKRISHNA'.split('').map((char, index) => (
                   <span
                     key={index}

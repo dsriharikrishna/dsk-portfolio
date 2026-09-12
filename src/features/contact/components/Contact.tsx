@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, ArrowRight, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, ArrowRight, Github, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import SectionHeader from '@/components/shared/SectionHeader';
 
