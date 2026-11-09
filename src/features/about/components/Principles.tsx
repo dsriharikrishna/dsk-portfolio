@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { Layers, ShieldAlert, Zap, Box, CheckCircle2 } from 'lucide-react';
+import SectionHeader from '@/components/shared/SectionHeader';
+import { Card } from '@/components/ui/card';
 
 const principles = [
   {
@@ -36,12 +38,10 @@ const principles = [
   },
 ];
 
-import SectionHeader from '@/components/shared/SectionHeader';
-
 export default function Principles() {
   return (
-    <section className="pt-20 pb-16 lg:pt-32 lg:pb-20 relative border-t border-border/50">
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
+    <section className="w-full py-12 sm:py-16 lg:py-20 relative border-t border-border/50">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,27 +57,31 @@ export default function Principles() {
           />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
           {principles.map((principle, index) => {
             const Icon = principle.icon;
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`flex gap-6 ${index === principles.length - 1 ? 'md:col-span-2 md:w-1/2 md:mx-auto' : ''}`}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                className={`h-full ${index === principles.length - 1 ? 'md:col-span-2 lg:col-span-1' : ''}`}
               >
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent shadow-[0_0_15px_rgba(139,92,246,0.15)]">
-                    <Icon className="w-6 h-6" />
+                <Card className="p-6 h-full flex flex-col gap-3.5 bg-card/75 hover:border-accent/50 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+                    <Icon className="w-5 h-5" />
                   </div>
-                </div>
-                <div className="flex flex-col gap-3">
-                  <h4 className="text-xl font-bold">{principle.title}</h4>
-                  <p className="text-muted-foreground leading-relaxed">{principle.description}</p>
-                </div>
+                  <div className="flex flex-col gap-1.5">
+                    <h4 className="text-base sm:text-lg font-heading font-bold text-foreground">
+                      {principle.title}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      {principle.description}
+                    </p>
+                  </div>
+                </Card>
               </motion.div>
             );
           })}

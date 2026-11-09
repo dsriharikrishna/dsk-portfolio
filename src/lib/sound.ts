@@ -84,7 +84,10 @@ class VintageComputerSoundManager {
     if (!ctx) return;
 
     if (ctx.state === 'suspended') {
-      ctx.resume().then(() => this.synthesizeVintageClick(ctx)).catch(() => {});
+      ctx
+        .resume()
+        .then(() => this.synthesizeVintageClick(ctx))
+        .catch(() => {});
       return;
     }
 
@@ -112,7 +115,7 @@ class VintageComputerSoundManager {
       noiseFilter.Q.setValueAtTime(3.2, now);
 
       const noiseGain = ctx.createGain();
-      noiseGain.gain.setValueAtTime(0.40, now);
+      noiseGain.gain.setValueAtTime(0.4, now);
       noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.016);
 
       noiseSource.connect(noiseFilter);
@@ -151,7 +154,7 @@ class VintageComputerSoundManager {
       chassisOsc.frequency.setValueAtTime(240, now);
       chassisOsc.frequency.exponentialRampToValueAtTime(75, now + 0.038);
 
-      chassisGain.gain.setValueAtTime(0.30, now);
+      chassisGain.gain.setValueAtTime(0.3, now);
       chassisGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.038);
 
       chassisOsc.connect(chassisGain);
@@ -175,7 +178,10 @@ class VintageComputerSoundManager {
     if (!ctx) return;
 
     if (ctx.state === 'suspended') {
-      ctx.resume().then(() => this.synthesizeVintageRelay(ctx)).catch(() => {});
+      ctx
+        .resume()
+        .then(() => this.synthesizeVintageRelay(ctx))
+        .catch(() => {});
       return;
     }
 
@@ -280,7 +286,10 @@ class VintageComputerSoundManager {
     };
 
     if (ctx.state === 'suspended') {
-      ctx.resume().then(run).catch(() => {});
+      ctx
+        .resume()
+        .then(run)
+        .catch(() => {});
     } else {
       run();
     }

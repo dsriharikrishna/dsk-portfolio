@@ -5,7 +5,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { GraduationCap, Award } from 'lucide-react';
 import SectionHeader from '@/components/shared/SectionHeader';
-import GlassCard from '@/components/shared/GlassCard';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { education } from '@/features/experience/data/education';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -60,9 +61,9 @@ export default function Education() {
     <section
       ref={sectionRef}
       id="education"
-      className="py-8 md:py-12 relative border-t border-border/50"
+      className="w-full py-12 sm:py-16 lg:py-20 relative border-t border-border/50"
     >
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="edu-header w-full">
           <SectionHeader
@@ -75,35 +76,37 @@ export default function Education() {
         </div>
 
         {/* Education Grid */}
-        <div className="edu-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+        <div className="edu-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 w-full">
           {education.map((edu, index) => {
-            const Icon = iconMap[index as keyof typeof iconMap];
+            const Icon = iconMap[index as keyof typeof iconMap] || Award;
             return (
-              <GlassCard
+              <Card
                 key={index}
-                className="edu-card p-8 group hover:border-accent/50 transition-colors flex flex-col gap-6 items-center text-center"
+                className="edu-card p-6 group hover:border-accent/50 transition-colors flex flex-col gap-4 items-center text-center justify-between bg-card/75"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-                  <Icon className="w-8 h-8" />
-                </div>
+                <div className="flex flex-col items-center gap-3 w-full">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary group-hover:bg-accent/10 group-hover:text-accent transition-colors">
+                    <Icon className="w-6 h-6" />
+                  </div>
 
-                <div className="flex flex-col gap-2">
-                  <h3 className="text-xl font-bold text-foreground leading-tight">{edu.degree}</h3>
-                  <p className="text-primary text-sm font-medium">{edu.institution}</p>
-                </div>
+                  <div className="flex flex-col gap-1 w-full">
+                    <h3 className="text-base sm:text-lg font-heading font-bold text-foreground leading-tight">
+                      {edu.degree}
+                    </h3>
+                    <p className="text-accent text-xs sm:text-sm font-medium">{edu.institution}</p>
+                  </div>
 
-                <div className="inline-block px-3 py-1 bg-secondary rounded-lg">
-                  <span className="text-muted-foreground text-xs font-mono tracking-widest uppercase">
+                  <Badge variant="secondary" className="font-mono text-xs">
                     {edu.period}
-                  </span>
+                  </Badge>
                 </div>
 
                 {edu.description && (
-                  <p className="text-muted-foreground text-sm leading-relaxed mt-auto pt-4 border-t border-border/50 w-full">
+                  <p className="text-muted-foreground text-xs leading-relaxed pt-3 border-t border-border/40 w-full">
                     {edu.description}
                   </p>
                 )}
-              </GlassCard>
+              </Card>
             );
           })}
         </div>

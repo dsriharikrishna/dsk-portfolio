@@ -117,9 +117,9 @@ export default function EngineeringLab() {
   return (
     <section
       id="engineer"
-      className="py-8 md:py-12 relative bg-secondary/10 border-t border-border/50"
+      className="w-full py-12 sm:py-16 lg:py-20 relative bg-secondary/10 border-t border-border/50"
     >
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

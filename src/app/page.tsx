@@ -6,7 +6,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Hero from '@/components/sections/Hero';
 import Journey from '@/features/about/components/Journey';
 import About from '@/features/about/components/About';
-import Problems from '@/features/about/components/Problems';
+import ServicesSection from '@/features/services/components/ServicesSection';
+import Contact from '@/features/contact/components/Contact';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +26,8 @@ export default function Home() {
       <Hero />
       <Journey />
       <About />
-      <Problems />
+      <ServicesSection />
+      <Contact />
     </>
   );
 }

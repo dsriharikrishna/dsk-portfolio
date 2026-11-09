@@ -1,16 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import {
-  ArrowLeft,
-  Download,
-  Mail,
-  Phone,
-  MapPin,
-  ExternalLink,
-  Github,
-  Linkedin,
-} from 'lucide-react';
+import { ArrowLeft, Download, Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
 import { resumeData } from '@/features/contact/data/resume';
 
 export default function ResumePage() {

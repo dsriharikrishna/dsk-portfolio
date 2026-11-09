@@ -38,13 +38,24 @@ export default function GithubMetrics() {
         const userData = await userRes.json();
         const repos = await reposRes.json();
 
-        // Calculate stats
-        const totalStars = repos.reduce((acc: number, repo: any) => acc + repo.stargazers_count, 0);
-        const totalForks = repos.reduce((acc: number, repo: any) => acc + repo.forks_count, 0);
+        interface GitHubRepoItem {
+          stargazers_count: number;
+          forks_count: number;
+          language: string | null;
+        }
+
+        const totalStars = repos.reduce(
+          (acc: number, repo: GitHubRepoItem) => acc + (repo.stargazers_count || 0),
+          0
+        );
+        const totalForks = repos.reduce(
+          (acc: number, repo: GitHubRepoItem) => acc + (repo.forks_count || 0),
+          0
+        );
 
         // Calculate language stats
         const languageMap = new Map<string, number>();
-        repos.forEach((repo: any) => {
+        repos.forEach((repo: GitHubRepoItem) => {
           if (repo.language) {
             languageMap.set(repo.language, (languageMap.get(repo.language) || 0) + 1);
           }

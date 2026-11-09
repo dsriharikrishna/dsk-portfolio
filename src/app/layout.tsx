@@ -1,54 +1,43 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono, Sora } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
-});
-
-const sora = Sora({
-  subsets: ['latin'],
-  variable: '--font-sora',
-  display: 'swap',
-});
-
 export const metadata: Metadata = {
-  title: 'Dasari Sriharikrishna | Product Engineer',
+  title: 'Dasari Sriharikrishna | Frontend Engineer | React.js & Next.js',
   description:
-    'Frontend-focused Full Stack Product Engineer. I solve complex business problems through scalable interfaces and production-ready applications.',
+    'Frontend Engineer with 2+ years of experience building modern web applications, enterprise dashboards, and scalable SaaS interfaces using React, Next.js, and TypeScript.',
   keywords: [
+    'Frontend Engineer',
     'Product Engineer',
-    'Frontend Developer',
-    'Full Stack Developer',
-    'React.js',
-    'Next.js',
+    'React.js Developer',
+    'Next.js Developer',
     'TypeScript',
-    'UI/UX Design',
+    'Tailwind CSS',
+    'Enterprise SaaS',
+    'Admin Dashboards',
     'Dasari Sriharikrishna',
   ],
   authors: [{ name: 'Dasari Sriharikrishna' }],
   creator: 'Dasari Sriharikrishna',
+  metadataBase: new URL('https://dskh-portfolio.netlify.app'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'Dasari Sriharikrishna | Product Engineer',
-    description: 'I build products, not just interfaces.',
+    url: 'https://dskh-portfolio.netlify.app',
+    title: 'Dasari Sriharikrishna | Frontend Engineer | React.js & Next.js',
+    description:
+      'Frontend Engineer with 2+ years of experience building modern web applications, enterprise dashboards, and scalable SaaS interfaces using React, Next.js, and TypeScript.',
     siteName: 'Dasari Sriharikrishna',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dasari Sriharikrishna | Product Engineer',
-    description: 'I build products, not just interfaces.',
+    title: 'Dasari Sriharikrishna | Frontend Engineer | React.js & Next.js',
+    description:
+      'Frontend Engineer with 2+ years of experience building modern web applications, enterprise dashboards, and scalable SaaS interfaces using React, Next.js, and TypeScript.',
   },
   robots: {
     index: true,
@@ -81,9 +70,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${sora.variable} antialiased relative`}
-      >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-sans antialiased relative">
         <div className="print:hidden">
           <SmoothCursor />
           <Particles

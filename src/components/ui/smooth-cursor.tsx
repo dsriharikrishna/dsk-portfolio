@@ -87,7 +87,10 @@ export function SmoothCursor({ cursor }: SmoothCursorProps) {
       }
     };
 
-    window.addEventListener('pointerdown', handleGlobalPointerDown, { capture: true, passive: true });
+    window.addEventListener('pointerdown', handleGlobalPointerDown, {
+      capture: true,
+      passive: true,
+    });
     return () => {
       window.removeEventListener('pointerdown', handleGlobalPointerDown, { capture: true });
     };

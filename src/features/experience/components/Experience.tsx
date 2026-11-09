@@ -4,14 +4,16 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { experiences } from '@/features/experience/data/experience';
 import SectionHeader from '@/components/shared/SectionHeader';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 export default function Experience() {
   return (
     <section
       id="experience"
-      className="py-8 md:py-12 relative bg-secondary/20 border-t border-border/50"
+      className="w-full py-12 sm:py-16 lg:py-20 relative bg-secondary/15 border-t border-border/50"
     >
-      <div className="container mx-auto px-6 max-w-7xl flex flex-col gap-8 md:gap-10">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,28 +45,33 @@ export default function Experience() {
                     initial={{ opacity: 0, x: isEven ? 20 : -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
-                    className="w-full bg-card border border-border p-8 rounded-2xl shadow-xl hover:border-accent/50 transition-colors flex flex-col gap-6"
+                    className="w-full"
                   >
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      <div className="flex flex-col gap-1">
-                        <h4 className="text-2xl font-black">{exp.company}</h4>
-                        <p className="text-muted-foreground font-medium">{exp.title}</p>
+                    <Card className="p-6 sm:p-7 hover:border-accent/50 transition-colors flex flex-col gap-4 bg-card/85">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div className="flex flex-col gap-0.5">
+                          <h4 className="text-xl sm:text-2xl font-heading font-black text-foreground">
+                            {exp.company}
+                          </h4>
+                          <p className="text-sm text-accent font-medium">{exp.title}</p>
+                        </div>
+                        <Badge variant="secondary" className="font-mono text-xs w-fit">
+                          {exp.period}
+                        </Badge>
                       </div>
-                      <span className="font-mono text-xs text-muted-foreground bg-secondary px-3 py-1 rounded-full w-fit">
-                        {exp.period}
-                      </span>
-                    </div>
 
-                    <div className="flex flex-col gap-3 mt-2">
-                      <ul className="flex flex-col gap-3">
+                      <ul className="flex flex-col gap-2 pt-2 border-t border-border/40">
                         {exp.description.map((item, i) => (
-                          <li key={i} className="flex items-start gap-3 text-muted-foreground">
-                            <span className="text-accent mt-1 text-sm">▹</span>
+                          <li
+                            key={i}
+                            className="flex items-start gap-2.5 text-xs sm:text-sm text-muted-foreground"
+                          >
+                            <span className="text-accent mt-0.5 text-xs">▹</span>
                             <span className="leading-relaxed">{item}</span>
                           </li>
                         ))}
                       </ul>
-                    </div>
+                    </Card>
                   </motion.div>
                 </div>
 

@@ -1,9 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Terminal, Monitor, Cpu, Database, Cloud } from 'lucide-react';
+import { Terminal, Monitor, Cpu, Database, Cloud, ArrowRight, Download } from 'lucide-react';
 import Link from 'next/link';
 import { Meteors } from '@/components/ui/meteors';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { resumeUrl } from '@/features/contact/data/resume';
 
 const systemNodes = [
@@ -16,14 +18,10 @@ const systemNodes = [
 ];
 
 export default function Hero() {
-  const scrollToSection = (id: string) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-20 pb-16 lg:pt-32 lg:pb-20"
+      className="w-full min-h-[87vh] flex flex-col items-center justify-center relative overflow-hidden py-16 sm:py-24 lg:py-26"
     >
       {/* Ambient Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
@@ -32,9 +30,9 @@ export default function Hero() {
       </div>
       <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-accent opacity-20 blur-[100px]"></div>
 
-      <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-8 items-center h-full max-w-7xl">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Left Content */}
-        <div className="flex flex-col items-start gap-5 w-full">
+        <div className="flex flex-col items-start gap-4 sm:gap-5 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -42,11 +40,11 @@ export default function Hero() {
             className="flex items-center gap-3"
           >
             <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
             </span>
-            <span className="font-mono text-sm tracking-wider text-muted-foreground uppercase">
-              Available for Opportunities
+            <span className="font-mono text-xs tracking-wider text-muted-foreground uppercase font-medium">
+              Frontend Engineer · Product Engineer
             </span>
           </motion.div>
 
@@ -54,62 +52,87 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-5xl md:text-6xl font-black font-heading tracking-tight leading-[1.1]"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading tracking-tight leading-tight"
           >
-            I BUILD PRODUCTS,
+            Building scalable digital products
             <br />
-            <span className="text-muted-foreground">NOT JUST INTERFACES.</span>
+            <span className="text-muted-foreground">with modern frontend engineering.</span>
           </motion.h1>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-3"
           >
-            <h2 className="text-2xl font-heading font-semibold text-accent">
-              Frontend-focused Full Stack Product Engineer
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              I turn complex SaaS and AI workflows into fast, intuitive and production-ready web
-              experiences.
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">
+              I&apos;m a frontend-focused engineer with 2+ years of experience building responsive
+              web applications, enterprise dashboards, and SaaS platforms using React, Next.js, and
+              TypeScript.
             </p>
+
+            <div className="flex flex-wrap items-center gap-y-2 gap-x-5 text-xs font-mono text-muted-foreground">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                Hyderabad, India
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                2+ Years Production Experience
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                Available for Select Projects
+              </span>
+            </div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap gap-4 w-full sm:w-auto"
+            className="flex flex-wrap gap-3 w-full sm:w-auto"
           >
-            <button
-              onClick={() => scrollToSection('#product')}
-              className="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold 
-                       hover:bg-primary/90 transition-all duration-300 w-full sm:w-auto text-center"
-            >
-              Explore My Work
-            </button>
-            <Link
-              href={resumeUrl}
-              target="_blank"
-              className="px-8 py-4 border border-border bg-card rounded-lg font-semibold 
-                       hover:border-accent hover:text-accent transition-all duration-300 w-full sm:w-auto text-center"
-            >
-              View Resume
-            </Link>
+            <Button asChild size="lg" className="font-semibold shadow-md">
+              <Link href="/projects">
+                Explore Projects
+                <ArrowRight className="w-4 h-4 ml-1.5" />
+              </Link>
+            </Button>
+            <Button asChild variant="accent" size="lg" className="font-semibold">
+              <Link href="/contact">Let&apos;s Work Together</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href={resumeUrl} target="_blank" rel="noopener noreferrer">
+                <Download className="w-4 h-4 mr-1.5" />
+                Resume
+              </Link>
+            </Button>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="pt-8 border-t border-border/50 w-full mt-8"
+            className="pt-4 border-t border-border/40 w-full flex flex-wrap gap-2 items-center"
           >
-            <p className="font-mono text-xs md:text-sm text-muted-foreground uppercase tracking-widest leading-loose">
-              NEXT.JS • REACT • TYPESCRIPT • NODE.JS
-              <br />
-              POSTGRESQL • DOCKER • AWS
-            </p>
+            <span className="text-xs font-mono text-muted-foreground mr-1 uppercase tracking-wider">
+              Core:
+            </span>
+            {[
+              'Next.js',
+              'React',
+              'TypeScript',
+              'Tailwind CSS',
+              'TanStack Query',
+              'REST APIs',
+              'Node.js',
+              'Docker',
+            ].map((tech) => (
+              <Badge key={tech} variant="secondary" className="text-[11px] font-mono">
+                {tech}
+              </Badge>
+            ))}
           </motion.div>
         </div>
 

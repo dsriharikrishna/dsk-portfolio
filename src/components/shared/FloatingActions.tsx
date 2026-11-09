@@ -59,7 +59,7 @@ export default function FloatingActions() {
 
   const [messages, setMessages] = useState<BotMessage[]>([
     {
-      id: 'welcome',  
+      id: 'welcome',
       sender: 'bot',
       text: "Hello! I'm Srihari's AI Portfolio Assistant, trained directly on his projects, skills, education, and professional experience. Ask me anything or select a topic below!",
       suggestedPrompts: [

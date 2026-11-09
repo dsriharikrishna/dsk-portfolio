@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 interface SectionHeaderProps {
   tag?: string;
@@ -18,13 +19,15 @@ export default function SectionHeader({
   className = '',
 }: SectionHeaderProps) {
   return (
-    <div className={`flex flex-col text-center items-center mb-6 md:mb-8 ${className}`}>
+    <div
+      className={cn('flex flex-col text-center items-center gap-2 max-w-3xl mx-auto', className)}
+    >
       {tag && (
-        <span className="font-mono text-xs md:text-sm uppercase tracking-widest text-accent font-semibold inline-block">
+        <span className="font-mono text-xs uppercase tracking-widest text-accent font-semibold inline-block">
           {tag.startsWith('//') ? tag : `// ${tag}`}
         </span>
       )}
-      <h2 className="text-3xl md:text-5xl font-black font-heading tracking-tight mt-2 leading-[1.15]">
+      <h2 className="text-2xl sm:text-3xl font-heading font-black tracking-tight leading-tight">
         {title}
         {titleHighlight && (
           <>
@@ -36,9 +39,7 @@ export default function SectionHeader({
         )}
       </h2>
       {subtitle && (
-        <p className="text-muted-foreground text-sm md:text-base max-w-2xl mt-2.5 leading-relaxed mx-auto">
-          {subtitle}
-        </p>
+        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{subtitle}</p>
       )}
     </div>
   );

@@ -17,7 +17,7 @@ export default function ProjectsPage() {
   }, []);
 
   return (
-    <div className="">
+    <div className="pt-16 sm:pt-20 pb-12 flex flex-col">
       <Projects />
       <BlogSection />
     </div>

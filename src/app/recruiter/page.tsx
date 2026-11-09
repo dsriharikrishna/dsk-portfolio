@@ -20,7 +20,7 @@ export default function RecruiterPage() {
   }, []);
 
   return (
-    <div>
+    <div className="pt-16 sm:pt-20 pb-12 flex flex-col">
       <About />
       <Experience />
       <Certifications />
