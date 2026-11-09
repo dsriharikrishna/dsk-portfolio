@@ -8,15 +8,40 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## 📌 Quick Summary of Milestones
 
-| Release / Phase | Timeframe      | Highlights                                                                                                                                                                                                                    |
-| --------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **v1.2.1**      | September 2026 | Headline & typography standardization across all 14 UI sections via unified `SectionHeader`, and consolidation of documentation into `docs/`.                                                                                 |
-| **v1.2.0**      | September 2026 | Feature-based architecture migration, Next.js 16 & React 19 upgrade, Framer Motion animations, Magic UI components (particles, pointer, meteors, smooth cursor), interactive StackMap, dedicated recruiter & engineer routes. |
-| **v1.0.0**      | February 2026  | Initial portfolio launch with Next.js App Router, Tailwind CSS, Lucide icons, Resend email service, Dev.to integration, and Netlify deployment configuration.                                                                 |
+| Release / Phase | Timeframe      | Highlights                                                                                                                                                                                                                          |
+| --------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **v1.3.0**      | November 2026  | Complete UI/UX consistency refactor, shadcn/ui components (`button`, `badge`, `card`, `input`, `textarea`), full-width `/contact` route, Freelance Services section, standardized typography & spacing, oversized signature footer. |
+| **v1.2.1**      | September 2026 | Headline & typography standardization across all 14 UI sections via unified `SectionHeader`, and consolidation of documentation into `docs/`.                                                                                       |
+| **v1.2.0**      | September 2026 | Feature-based architecture migration, Next.js 16 & React 19 upgrade, Framer Motion animations, Magic UI components (particles, pointer, meteors, smooth cursor), interactive StackMap, dedicated recruiter & engineer routes.       |
+| **v1.0.0**      | February 2026  | Initial portfolio launch with Next.js App Router, Tailwind CSS, Lucide icons, Resend email service, Dev.to integration, and Netlify deployment configuration.                                                                       |
 
 ---
 
 ## 📜 Chronological Commit Log & Changelog
+
+### 🚀 Phase 3: Global UI/UX Consistency Refactor & Architecture Polish (November 2026)
+
+#### [Unreleased / Staged] - 2026-11-09
+
+- **Type**: `feat` / `refactor`
+- **Subject**: `refactor: global UI/UX consistency, shadcn/ui components, full-width contact page & oversized branding`
+- **Description**:
+  - **Full-Width Standalone Contact Route (`/contact`)**:
+    - Created dedicated App Router page [`src/app/contact/page.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/app/contact/page.tsx) with custom metadata and canonical link.
+    - Updated [`Contact.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/features/contact/components/Contact.tsx) to utilize the full standardized container width (`max-w-7xl px-4 sm:px-6 lg:px-8`).
+  - **Atomic shadcn/ui Integration**:
+    - Built modular UI primitives: [`button.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/ui/button.tsx), [`badge.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/ui/badge.tsx), [`card.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/ui/card.tsx), [`input.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/ui/input.tsx), [`textarea.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/ui/textarea.tsx).
+    - Refactored form inputs, action buttons, and project badges across the codebase.
+  - **Freelance Services Offerings**:
+    - Built [`ServicesSection.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/features/services/components/ServicesSection.tsx) and [`services.ts`](file:///c:/PROJECTS/dsk-portfolio/src/features/services/data/services.ts) showcasing 6 core engineering offerings.
+  - **Global Layout & Typography Standardization**:
+    - Standardized container widths to `max-w-7xl` across all sections, headers, and navigation.
+    - Capped headings at `text-5xl` for hero and `text-2xl sm:text-3xl` for section titles.
+    - Replaced margin-based spacing with flex/grid `gap-*` layouts and standardized section vertical padding to `py-12 sm:py-16 lg:py-20`.
+  - **Marquee & Skills Badges Overlap Fix**:
+    - Eliminated conflicting `RoughNotation` canvas smearing from [`Skills.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/features/skills/components/Skills.tsx) and updated [`marquee.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/ui/marquee.tsx) to clean CSS gap rhythm.
+  - **Oversized Footer Signature**:
+    - Enlarged the footer editorial signature in [`Footer.tsx`](file:///c:/PROJECTS/dsk-portfolio/src/components/layout/Footer.tsx) to `text-6xl sm:text-8xl md:text-9xl lg:text-[11rem]` for "DASARI" and `text-2xl sm:text-4xl md:text-5xl lg:text-6xl` for "SRIHARIKRISHNA".
 
 ### 🚀 Phase 2: Feature-Based Architecture & Interactive UI Overhaul (September 2026)
 
